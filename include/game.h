@@ -10,6 +10,13 @@ public:
     Game();
     void start();
     void playIntro();
+    void chantI();
+    void waitforme();
+    void howlong();
+    void chantII();
+    void epicIII();
+    void doubtcomesin();
+    void roadtohell();
     void endGame();
     
 private:

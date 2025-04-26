@@ -26,6 +26,29 @@ void Game::playIntro() {
     talkToEurydice(player);
 }
 
+void Game::chantI() {
+
+}
+
+void Game::waitforme() {
+
+}
+void Game::howlong() {
+
+}
+void Game::chantII() {
+
+}
+void Game::epicIII() {
+
+}
+void Game::doubtcomesin() {
+
+}
+void Game::roadtohell() {
+
+}
+
 void Game::endGame() {
     std::cout << "Thanks for playing! See you next time.\n";
 }
