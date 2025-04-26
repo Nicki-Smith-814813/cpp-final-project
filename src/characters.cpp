@@ -6,3 +6,5 @@ void Character::displayStats() {
     std::cout << "Faith: " << faith << "\n";
     std::cout << "Trust: " << trust << "\n";
 }
+
+float faith = 100.0f;  // Initial value for faith

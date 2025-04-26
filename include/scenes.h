@@ -20,7 +20,7 @@ void forageForResources();
 #endif // SCENES_H
 
 // Faith variable (this could also be declared in the game state)
-extern int faith;  // Or you could track this in the player struct
+extern float faith;  // Declare faith as external
 
 // Myth question function
 void mythQuestions();

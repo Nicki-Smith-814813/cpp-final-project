@@ -12,4 +12,6 @@ struct Character {
     void displayStats();
 };
 
+
+
 #endif // CHARACTERS_H

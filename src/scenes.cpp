@@ -131,13 +131,6 @@ void chantI() {
     }
 }
 
-// Initialize faith variable
-float faith = 100.0f;  // Start with full faith
-
-// Helper function to display dialogue
-void displayDialogue(const string& dialogue) {
-    cout << dialogue << "\n\n";
-}
 
 // Function to handle Fates' questions
 void mythQuestions() {
@@ -438,9 +431,8 @@ void epicIII() {
 
 // Function for the roadtohell epilogue
 void roadtohell() {
-    // Assuming the faith variable is already defined globally or accessible here
-    extern int faith;  // Faith should be updated in doubtcomesin() to reflect the player's choice
-
+    
+    extern float faith; 
     // Intro by Hermes
     displayDialogue("Hermes' voice, now soft and sorrowful, fills the air...\n");
 
