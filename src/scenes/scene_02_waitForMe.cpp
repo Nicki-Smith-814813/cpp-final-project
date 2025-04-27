@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "scenes/scene_02_waitForMe.h"
 #include "scenes/faithSystem.h"
-
+#include "characters.h"
 // WaitForMe: The moment where Hermes breaks the news and sends Orpheus on his journey.
 void scene_02_waitForMe(Character& player) {
     displayDialogue("Hermes appears before you, his face grim.\n");
@@ -13,7 +13,7 @@ void scene_02_waitForMe(Character& player) {
     // Begin the journey
     displayDialogue("With a heavy heart, you begin your journey toward Hadestown. The Fates seem to swirl about you, their eyes glinting with malicious amusement.\n");
 
-    mythQuestions();  // Fates ask questions about Greek myths
+    mythQuestions(player); //Fates ask questions about Greek myths
 
     // Outcome based on faith
     if (faith > 100) {

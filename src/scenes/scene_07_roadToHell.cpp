@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "scenes/faithSystem.h"
 #include "scenes/scene_07_roadToHell.h"
-
+#include "characters.h"
 // Function for the roadtohell epilogue
 void scene_07_roadToHell(Character& player) {
 

@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "scenes/scene_04_chantII.h"
 #include "scenes/faithSystem.h"
-
+#include "characters.h"
 // Function to handle the chantII scene
 void chantII(Character& player) {
     displayDialogue("Hades stands before Orpheus, a smirk crossing his face as he issues the challenge.\n");

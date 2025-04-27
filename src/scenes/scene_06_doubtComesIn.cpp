@@ -1,5 +1,6 @@
 #include "utils.h"
 #include "scenes/scene_06_doubtComesIn.h"
+#include "characters.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>

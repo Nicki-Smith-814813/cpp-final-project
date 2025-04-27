@@ -3,6 +3,7 @@
 #include "scenes/foraging.h"
 #include <iostream>
 #include "utils.h"
+#include "characters.h"
 using namespace std;
 
 void scene_01_chantI(Character& player) {

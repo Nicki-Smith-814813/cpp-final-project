@@ -1,6 +1,6 @@
 #ifndef FAITHSYSTEM_H
 #define FAITHSYSTEM_H
-
+#include "characters.h"
 extern float faith;
 
 // Functions to manage the player's faith

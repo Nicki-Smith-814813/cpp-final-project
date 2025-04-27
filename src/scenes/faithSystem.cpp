@@ -8,8 +8,6 @@
 #include "utils.h"
 using namespace std;
 
-float faith = 100.0f; // starting faith
-
 void increaseFaith(Character& player, float amount) {
     player.faith += amount;
     if (player.faith > 100.0f) player.faith = 100.0f;

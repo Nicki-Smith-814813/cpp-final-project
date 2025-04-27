@@ -5,26 +5,12 @@
 #include <vector>
 using namespace std;
 
+// Forward Declarations
+void hermesNarration();
+void talkToEurydice(Character& player);
+void persephoneAndHadesConflict();
 
-// Hermes’ narration to set the stage
-void hermesNarration() {
-    using namespace std;
-    // (your existing narration)
-}
-
-// Function for dialogue with Eurydice
-void talkToEurydice(Character& player) {
-    using namespace std;
-    // (your existing choice system)
-}
-
-// Persephone and Hades' bickering
-void persephoneAndHadesConflict() {
-    using namespace std;
-    // (your existing dialogue)
-}
-
-// Actual Scene Function
+// Scene 00
 void scene_00_waydown(Character& player) {
     hermesNarration();
     talkToEurydice(player);
