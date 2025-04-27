@@ -1,8 +1,36 @@
 #include <iostream>
 #include "utils.h"
-#include "scene_00_waydown.h"
-#include "faithSystem.h"
+#include "scenes/scene_00_waydown.h"
+#include "scenes/faithSystem.h"
+#include <vector>
 using namespace std;
+
+
+// Hermes’ narration to set the stage
+void hermesNarration() {
+    using namespace std;
+    // (your existing narration)
+}
+
+// Function for dialogue with Eurydice
+void talkToEurydice(Character& player) {
+    using namespace std;
+    // (your existing choice system)
+}
+
+// Persephone and Hades' bickering
+void persephoneAndHadesConflict() {
+    using namespace std;
+    // (your existing dialogue)
+}
+
+// Actual Scene Function
+void scene_00_waydown(Character& player) {
+    hermesNarration();
+    talkToEurydice(player);
+    persephoneAndHadesConflict();
+}
+
 // Hermes’ narration to set the stage
 void hermesNarration() {
     std::cout << "Hermes speaks with a playful yet knowing tone...\n\n";

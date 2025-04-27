@@ -4,6 +4,7 @@
 #include <chrono>
 #include <limits>
 #include <cstdlib>
+#include <fstream>
 
 using namespace std;
 
@@ -80,4 +81,49 @@ void clearScreen() {
 void pause() {
     cout << "\n(Press Enter to continue...)\n";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+
+
+void saveGame(const Character& player, const std::string& filename) {
+    std::ofstream outFile(filename);
+    if (outFile.is_open()) {
+        outFile << player.name << "\n"
+                << player.faith << "\n"
+                << player.trust << "\n";
+        outFile.close();
+    } else {
+        std::cout << "Error saving game.\n";
+    }
+}
+
+bool loadGame(Character& player, const std::string& filename) {
+    std::ifstream inFile(filename);
+    if (inFile.is_open()) {
+        getline(inFile, player.name);
+        inFile >> player.faith
+               >> player.trust;
+        inFile.close();
+        return true;
+    } else {
+        std::cout << "No save file found.\n";
+        return false;
+    }
+}
+
+
+
+int getValidatedInput(int min, int max) {
+    int choice;
+    while (true) {
+        std::cout << "Enter choice (" << min << "-" << max << "): ";
+        std::cin >> choice;
+        if (std::cin.fail() || choice < min || choice > max) {
+            std::cout << "Invalid input. Try again.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        } else {
+            return choice;
+        }
+    }
 }

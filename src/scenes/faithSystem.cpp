@@ -1,22 +1,24 @@
-#include "faithSystem.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include "scenes/faithSystem.h"
 #include "characters.h"
 #include "utils.h"
-#include <string>
-
 using namespace std;
 
 float faith = 100.0f; // starting faith
 
-void increaseFaith(float amount) {
-    faith += amount;
-    if (faith > 100.0f) faith = 100.0f;
+void increaseFaith(Character& player, float amount) {
+    player.faith += amount;
+    if (player.faith > 100.0f) player.faith = 100.0f;
 }
 
-void decreaseFaith(float amount) {
-    faith -= amount;
-    if (faith < 0.0f) faith = 0.0f;
+void decreaseFaith(Character& player, float amount) {
+    player.faith -= amount;
+    if (player.faith < 0.0f) player.faith = 0.0f;
 }
-
 // Function to handle Fates' questions
 void mythQuestions() {
     int correctAnswers = 0;
@@ -85,67 +87,49 @@ void mythQuestions() {
 
 // Function to simulate the hades says challenge
 bool hadesSaysChallenge() {
-    string playerInput;
-    int score = 0;
+    cout << "\nHades' eyes gleam. \"Let's see if you can remember, mortal.\"\n";
+    cout << "He begins issuing commands, one after another...\n\n";
 
-    // Commands for the hades says challenge
-    string commands[] = {
-        "Hades says touch your nose.",
-        "Touch your toes.",
-        "Hades says clap your hands.",
-        "Spin around.",
-        "Hades says raise your right hand.",
-        "Count to ten.",
-        "Hades says dance.",
-        "Recite a poem.",
-        "Hades says sing me a song."
+    srand(time(0)); // Seed random generator
+
+    vector<string> possibleCommands = {
+        "Bow",
+        "Clap",
+        "Stomp",
+        "Spin",
+        "Touch your toes",
+        "Jump",
+        "Raise your hands",
+        "Kneel"
     };
 
-    // Number of hades says commands to give
-    int numCommands = 9;
+    vector<string> sequence;
+    int rounds = 3; // How many commands to memorize (you can increase this for harder)
 
-    // Seed the random number generator
-    srand(time(0));
+    // Generate the sequence
+    for (int i = 0; i < rounds; ++i) {
+        int index = rand() % possibleCommands.size();
+        sequence.push_back(possibleCommands[index]);
+        cout << "Hades says: " << possibleCommands[index] << endl;
+    }
 
-    // Hades says game loop
-    for (int i = 0; i < numCommands; ++i) {
-        int randCommand = rand() % 9; // Choose a random command
+    cout << "\nNow, repeat the commands exactly, one at a time.\n";
+    cout << "(Type your responses exactly: example -> Bow)\n\n";
 
-        // If the command is "Hades says" or not
-        if (randCommand % 2 == 0) { // Even numbers are "Hades says" commands
-            displayDialogue(commands[randCommand]);  // Display the command
+    // Player must repeat the sequence
+    for (int i = 0; i < rounds; ++i) {
+        cout << "Command #" << (i+1) << ": ";
+        string response;
+        getline(cin >> ws, response); // Clean input handling
 
-            // Get player's input (responding "yes" or "no")
-            cout << "Did you follow the command? (yes/no): ";
-            cin >> playerInput;
-
-            // Check if player responded correctly
-            if (playerInput == "yes") {
-                score++;
-            } else {
-                displayDialogue("You failed to follow the command!");
-            }
-        } else {
-            displayDialogue("Do not do anything. (No Hades says!)");
-
-            cout << "Did you follow the command? (yes/no): ";
-            cin >> playerInput;
-
-            // If the player does it anyway, they fail
-            if (playerInput == "yes") {
-                displayDialogue("You were supposed to ignore this command!");
-            }
+        if (response != sequence[i]) {
+            cout << "Hades frowns darkly. \"WRONG.\"\n";
+            return false;
         }
     }
 
-    // Determine success based on the number of correct responses
-    if (score == 3) {
-        displayDialogue("You successfully followed Hades' commands!");
-        return true;  // Player wins
-    } else {
-        displayDialogue("You failed to follow the commands correctly.");
-        return false;  // Player loses
-    }
+    cout << "Hades chuckles, impressed. \"You have a sharp mind after all.\"\n";
+    return true;
 }
 
 bool musicalGame() {

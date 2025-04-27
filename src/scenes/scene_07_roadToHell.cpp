@@ -1,7 +1,9 @@
 #include "utils.h"
+#include "scenes/faithSystem.h"
+#include "scenes/scene_07_roadToHell.h"
 
 // Function for the roadtohell epilogue
-void roadtohell() {
+void scene_07_roadToHell(Character& player) {
 
     extern float faith; 
     // Intro by Hermes

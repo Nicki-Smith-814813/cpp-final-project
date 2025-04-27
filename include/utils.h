@@ -13,9 +13,18 @@ enum class Speaker {
     Eurydice
 };
 
-void displayDialogue(const std::string& dialogue, Speaker speaker = Speaker::Narrator);
+void displayDialogue(const std::string& message, int delayMs = 30); // narration
+void displaySpeakerDialogue(const std::string& speaker, const std::string& message);
 void displayChoice(const std::string& prompt, const std::string choices[], int numChoices);
 void clearScreen();
 void pause();
+
+#pragma once
+#include "characters.h"
+
+void saveGame(const Character& player, const std::string& filename);
+bool loadGame(Character& player, const std::string& filename);
+
+int getValidatedInput(int min, int max);
 
 #endif

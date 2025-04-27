@@ -1,5 +1,7 @@
-#include "foraging.h"
+#include "scenes/foraging.h"
 #include "utils.h"
+#include <iostream>
+using namespace std;
 
 void forageForResources() {
     srand(time(0)); // Seed random number generator

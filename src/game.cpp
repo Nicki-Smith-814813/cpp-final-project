@@ -10,21 +10,38 @@
 #include "scenes/scene_06_doubtComesIn.h"
 #include "scenes/scene_07_roadToHell.h"
 #include <iostream>
+
 using namespace std;
 
-// Main flow controller
-void playGame() {
-    cout << "Welcome to 'Hadestown'..." << endl;
-    
-    // Gameplay loop (linear, scene by scene)
-    scene_00_waydown();
-    scene_01_chantI();
-    scene_02_waitForMe();
-    scene_03_howLong();
-    scene_04_chantII();
-    scene_05_epicIII();
-    scene_06_doubtComesIn();
-    scene_07_roadToHell();
 
+// Constructor
+Game::Game() {
+    init();
+}
+
+// Initialize player and other settings
+void Game::init() {
+ 
+}
+
+// Main game start function
+void Game::start() {
+    cout << "Welcome to 'Hadestown'..." << endl;
+
+    scene_00_waydown(player);
+    scene_01_chantI(player);
+    scene_02_waitForMe(player);
+    scene_03_howLong(player);
+    scene_04_chantII(player);
+    scene_05_epicIII(player);
+    scene_06_doubtComesIn(player);
+    scene_07_roadToHell(player);
+
+    endGame();
+}
+
+
+// Endgame sequence
+void Game::endGame() {
     cout << "\nThanks for playing!" << endl;
 }

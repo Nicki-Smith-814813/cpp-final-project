@@ -1,11 +1,11 @@
-#include "foraging.h"
-#include "scene_01_chantI.h"
-#include "faithSystem.h"
+#include "scenes/faithSystem.h"
+#include "scenes/scene_01_chantI.h"
+#include "scenes/foraging.h"
 #include <iostream>
 #include "utils.h"
-using namespace std
+using namespace std;
 
-void chantI() {
+void scene_01_chantI(Character& player) {
     displayDialogue("The journey begins... Orpheus, your music has the power to heal, but does it have the power to save?\n");
     displayDialogue("You see Eurydice across the distance, her figure shimmering with uncertainty. But in her eyes, there is hope—a fragile hope.\n");
     displayDialogue("'Eurydice... I'm coming for you,' you say, heart pounding, determined to overcome whatever stands in your way.\n");

@@ -3,11 +3,19 @@
 
 extern float faith;
 
-void increaseFaith(float amount);
-void decreaseFaith(float amount);
-void askFaithQuestions();
-void simonSaysChallenge();
-void musicalGame();
-void mythQuestions();
+// Functions to manage the player's faith
+void increaseFaith(Character& player, float amount);
+void decreaseFaith(Character& player, float amount);
 
+// Mythology quiz function
+void mythQuestions(Character& player);
+
+//Memory challenge
+bool hadesSaysChallenge();
+
+//The lyre song scene game
+bool musicalGame();
+
+//Doubt comes in with tricky fingers.
+void askFaithQuestions();
 #endif

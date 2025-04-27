@@ -1,9 +1,9 @@
 #include "utils.h"
-#include "faithSystem.h"
-#include "scene_05_epicIII.h"
+#include "scenes/faithSystem.h"
+#include "scenes/scene_05_epicIII.h"
 
 
-void epicIII() {
+void epicIII(Character& player) {
     displayDialogue("The Fates circle around Hades, whispering in his ear with venomous doubt.\n");
     displayDialogue("'Are you sure about this, Hades? Letting them go? It could unravel everything you've built,' they hiss.\n");
     displayDialogue("'You should have kept her here, where she belongs,' they continue, their voices like a dark wind.\n");

@@ -1,10 +1,9 @@
 #include "utils.h"
-#include "scene_04_chantII.h"
-#include "faithSystem.h"
-
+#include "scenes/scene_04_chantII.h"
+#include "scenes/faithSystem.h"
 
 // Function to handle the chantII scene
-void chantII() {
+void chantII(Character& player) {
     displayDialogue("Hades stands before Orpheus, a smirk crossing his face as he issues the challenge.\n");
     displayDialogue("'Alright, Orpheus,' Hades says, 'Let’s see if you can keep up. We’re going to play a little game. It's a Hades says challenge. If you succeed, I'll let you play your song. If you fail... well, let's just say you'll need someone to speak on your behalf.'\n");
 

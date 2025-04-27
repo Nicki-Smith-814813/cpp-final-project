@@ -1,8 +1,10 @@
+#ifndef SCENE_00_WAYDOWN_H
+#define SCENE_00_WAYDOWN_H
+
 #include "characters.h"
-#include "utils.h"
 
-using namespace std;
+void scene_00_waydown(Character& player);
 
-void hermesNarration();
-void persephoneAndHadesConflict();
-void talkToEurydice(Character& player);
+#endif // SCENE_00_WAYDOWN_H
+
+

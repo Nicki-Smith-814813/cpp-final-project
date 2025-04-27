@@ -1,7 +1,9 @@
 #include "utils.h"
-#include "scene_02_waitForMe.h"
+#include "scenes/scene_02_waitForMe.h"
+#include "scenes/faithSystem.h"
+
 // WaitForMe: The moment where Hermes breaks the news and sends Orpheus on his journey.
-void waitForMe() {
+void scene_02_waitForMe(Character& player) {
     displayDialogue("Hermes appears before you, his face grim.\n");
     displayDialogue("'Orpheus, I regret to inform you that Eurydice has passed away... The snakebite was too much, or perhaps the cold was stronger than we realized. She's gone.'\n");
     displayDialogue("Your heart sinks into your chest. Eurydice, the woman you loved, is no longer in this world.\n");
