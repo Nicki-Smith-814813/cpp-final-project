@@ -1,4 +1,6 @@
-#include foraging.h
+#include "foraging.h"
+#include "scene_01_chantI.h"
+#include "faithSystem.h"
 #include <iostream>
 #include "utils.h"
 using namespace std

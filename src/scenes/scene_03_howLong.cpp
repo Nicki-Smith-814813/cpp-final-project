@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "scene_03_howLong.h"
 
 void howLong() {
     displayDialogue("The scene opens in the grand, dimly lit quarters of the Underworld’s ruling couple.\n");

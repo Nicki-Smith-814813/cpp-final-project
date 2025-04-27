@@ -1,5 +1,7 @@
 #include <iostream>
 #include "utils.h"
+#include "scene_00_waydown.h"
+#include "faithSystem.h"
 using namespace std;
 // Hermes’ narration to set the stage
 void hermesNarration() {

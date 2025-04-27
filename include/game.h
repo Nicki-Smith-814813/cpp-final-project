@@ -3,20 +3,20 @@
 #define GAME_H
 
 #include "characters.h"
-#include "scenes.h"
+
 
 class Game {
 public:
     Game();
     void start();
-    void playIntro();
-    void chantI();
-    void waitforme();
-    void howlong();
-    void chantII();
-    void epicIII();
-    void doubtcomesin();
-    void roadtohell();
+    void scene_00_waydown();
+    void scene_01_chantI();
+    void scene_02_waitForMe();
+    void scene_03_howLong();
+    void scene_04_chantII();
+    void scene_05_epicIII();
+    void scene_06_doubtComesIn();
+    void scene_07_roadToHell();
     void endGame();
     
 private:

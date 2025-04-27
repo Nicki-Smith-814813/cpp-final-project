@@ -1,5 +1,9 @@
 #include "faithSystem.h"
+#include "characters.h"
 #include "utils.h"
+#include <string>
+
+using namespace std;
 
 float faith = 100.0f; // starting faith
 

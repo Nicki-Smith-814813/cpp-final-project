@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "scene_02_waitForMe.h"
 // WaitForMe: The moment where Hermes breaks the news and sends Orpheus on his journey.
 void waitForMe() {
     displayDialogue("Hermes appears before you, his face grim.\n");

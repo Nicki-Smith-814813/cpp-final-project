@@ -1,4 +1,7 @@
 #include "utils.h"
+#include "faithSystem.h"
+#include "scene_05_epicIII.h"
+
 
 void epicIII() {
     displayDialogue("The Fates circle around Hades, whispering in his ear with venomous doubt.\n");
