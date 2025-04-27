@@ -72,6 +72,7 @@ Follow on-screen prompts during puzzles and mini-games.
 Success in certain challenges depends on your faith and trust stats!
 
 📜 Credits and Acknowledgments
+
 Story inspired by Hadestown — a musical by Anaïs Mitchell.
 
 Mythological elements adapted from Greek mythology.
