@@ -1,72 +1,91 @@
-# 🎭 Hadestown: The Text-Based RPG
+🎭 Hadestown: The Text-Based RPG
 
-![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)
-![Terminal Game](https://img.shields.io/badge/Platform-Terminal-lightgrey.svg)
-![Build-Make](https://img.shields.io/badge/Build-Makefile-brightgreen.svg)
-![License-NonCommercial](https://img.shields.io/badge/License-NonCommercial-lightblue.svg)
 
----
 
-Welcome to **Hadestown**, a mythic, musical journey through a world of gods, bargains, and impossible choices.\
-This is a **C++ text-based RPG** where you step into the sandals of **Orpheus**, braving the underworld to bring back the one you love.
 
-> *"The world we dream about and the one we live in now..."*
+Welcome to Hadestown, a mythic, musical journey through a world of gods, bargains, and impossible choices.
+This is a C++ text-based RPG where you step into the sandals of Orpheus, braving the underworld to bring back the one you love.
 
----
+"The world we dream about and the one we live in now..."
 
-## 🌟 About the Game
+🌟 About the Game
+Genre: Text-Based Role-Playing Game (RPG)
 
-- **Genre:** Text-Based Role-Playing Game (RPG)
-- **Theme:** Greek Mythology — Inspired by the musical *Hadestown* by Anaïs Mitchell
-- **Language:** C++
-- **Platform:** Terminal/Command Line
+Theme: Greek Mythology — Inspired by the musical Hadestown by Anaïs Mitchell
 
-**Hadestown** combines **narrative-driven choices**, **branching dialogue**, **inventory management**, and **puzzle-solving** into an emotional, atmospheric journey where every decision matters.
+Language: C++
 
----
+Platform: Terminal / Command Line Interface (CLI)
 
-## 🎮 Features
+Hadestown combines narrative-driven choices, branching dialogue, inventory management, and puzzle-solving into an emotional, atmospheric journey where every decision matters.
 
-- **Dynamic Storytelling:**\
-  Your choices shape trust, courage, and destiny.
+🎮 Features
+Dynamic Storytelling:
+Your choices shape trust, faith, and destiny.
 
-- **Inventory System:**\
-  Manage items, gifts, and offerings to navigate the dangers of the underworld.
+Inventory System:
+Manage items, gifts, and offerings to navigate the dangers of the Underworld.
 
-- **Turn-Based Challenges:**\
-  Solve riddles from the Fates and endure the Underworld’s trials.
+Turn-Based Challenges:
+Solve riddles from the Fates and endure Underworld trials.
 
-- **Mythological Encounters:**\
-  Meet figures like Hermes, Eurydice, the Fates, Hades, and Persephone.
+Mythological Encounters:
+Meet figures like Hermes, Eurydice, the Fates, Hades, and Persephone.
 
-- **Multiple Endings:**\
-  Two unique story outcomes shaped by your decisions.
+Multiple Endings:
+Achieve different outcomes based on your decisions and faith.
 
----
+🛠 Project Structure
 
-## 🛠 Project Structure
+Path	Purpose
+src/	C++ source files (.cpp)
+include/	C++ header files (.h)
+bin/	Compiled game executable
+build/	Temporary object files (.o)
+Makefile	Build automation rules
+.vscode/	Dev environment configuration
 
-| File/Folder | Purpose                     |
-| ----------- | --------------------------- |
-| `src/`      | C++ source files (.cpp)     |
-| `include/`  | C++ header files (.h)       |
-| `bin/`      | Compiled game executable    |
-| `build/`    | Temporary object files (.o) |
-| `Makefile`  | Build automation rules      |
+🚀 How to Build and Run
+#Requirements
 
----
+C++17-compatible compiler (e.g., g++ 9.3.0 or later)
 
-## 🚀 How to Build & Run
+Make
 
-### Requirements
+Build Commands
 
-- C++17-compatible Compiler (e.g., `g++`)
-- Make
+make release      # Build optimized release version
 
-### Build Commands
+make debug        # Build with debug symbols for debugging
 
-```bash
-make release      # Build optimized version
-make debug        # Build with debug symbols
+make run          # Build and immediately run the game
+
 make clean        # Remove build artifacts
 
+
+Controls:
+
+Enter numbers to choose dialogue options.
+
+Follow on-screen prompts during puzzles and mini-games.
+
+Success in certain challenges depends on your faith and trust stats!
+
+📜 Credits and Acknowledgments
+
+Story inspired by Hadestown — a musical by Anaïs Mitchell.
+
+Mythological elements adapted from Greek mythology.
+
+Game design, programming, and adaptation by Nicki Smith.
+
+⚡ Known Issues and Future Work
+No known critical issues at this time.
+
+Future plans: Add ASCII art animations and optional background music integration (SFML or simple .wav/.mp3 playback).
+
+📖 License
+For educational and personal use only.
+Commercial use prohibited.
+
+🎶 "Come see how the world could be..." 🎶
