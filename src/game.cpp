@@ -1,54 +1,28 @@
-// game.cpp
-#include <iostream>
-#include "game.h"
 #include "characters.h"
-#include "scenes.h"
 
-Game::Game() {
-    // Initialize the game here
-    init();
-}
+// Include all scene headers
 
-void Game::init() {
-    player.name = "Orpheus";
-    player.faith = 10;
-    player.trust = 10;
-}
 
-void Game::start() {
-    std::cout << "Welcome to Hadestown RPG!\n";
-    playIntro();
-}
+#include <iostream>
+using namespace std;
 
-void Game::playIntro() {
-    hermesNarration();
-    persephoneAndHadesConflict();
-    talkToEurydice(player);
-}
+// Main flow controller
+void playGame() {
+    cout << "Welcome to 'Hadestown'..." << endl;
+    
+    // Introduce player character
+    Orpheus.name = "Orpheus";
+    Eurydice.name = "Eurydice";
+    
+    // Gameplay loop (linear, scene by scene)
+    scene_00_waydown();
+    scene_01_chantI();
+    scene_02_waitForMe();
+    scene_03_howLong();
+    scene_04_chantII();
+    scene_05_epicIII();
+    scene_06_doubtComesIn();
+    scene_07_roadToHell();
 
-void Game::chantI() {
-
-}
-
-void Game::waitforme() {
-
-}
-void Game::howlong() {
-
-}
-void Game::chantII() {
-
-}
-void Game::epicIII() {
-
-}
-void Game::doubtcomesin() {
-
-}
-void Game::roadtohell() {
-
-}
-
-void Game::endGame() {
-    std::cout << "Thanks for playing! See you next time.\n";
+    cout << "\nThanks for playing!" << endl;
 }
