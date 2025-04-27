@@ -21,7 +21,7 @@ Hadestown combines narrative-driven choices, branching dialogue, inventory manag
 
 🎮 Features
 Dynamic Storytelling:
-Your choices shape trust, courage, and destiny.
+Your choices shape trust, faith, and destiny.
 
 Inventory System:
 Manage items, gifts, and offerings to navigate the dangers of the Underworld.
@@ -47,26 +47,29 @@ Makefile	Build automation rules
 
 🚀 How to Build and Run
 #Requirements
+
 C++17-compatible compiler (e.g., g++ 9.3.0 or later)
 
 Make
 
 Build Commands
-bash
-Copy
-Edit
+
 make release      # Build optimized release version
+
 make debug        # Build with debug symbols for debugging
+
 make run          # Build and immediately run the game
+
 make clean        # Remove build artifacts
 
 
-#Controls
+Controls:
+
 Enter numbers to choose dialogue options.
 
 Follow on-screen prompts during puzzles and mini-games.
 
-Success in certain challenges depends on your faith, courage, and trust stats!
+Success in certain challenges depends on your faith and trust stats!
 
 📜 Credits and Acknowledgments
 Story inspired by Hadestown — a musical by Anaïs Mitchell.
