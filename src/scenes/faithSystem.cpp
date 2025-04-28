@@ -130,10 +130,9 @@ bool hadesSaysChallenge() {
     cout << "Hades chuckles, impressed. \"You have a sharp mind after all.\"\n";
     return true;
 }
-
-// Musical challenge function
-bool musicalGame(Character& player, bool isRetry = false, int difficultyLevel = 1)
- {
+//Musical challenge
+bool musicalGame(Character& player, bool isRetry, int difficultyLevel) 
+{
     if (isRetry) {
         displaySpeakerDialogue("Hades", "You dare try again, boy? The melody grows longer...");
     } else {
@@ -185,7 +184,7 @@ bool musicalGame(Character& player, bool isRetry = false, int difficultyLevel = 
             score++;
         } else {
             displaySpeakerDialogue("Fates", "*You falter... the thread snaps.*");
-            return false;
+            return false; // fail immediately on wrong input
         }
     }
 
@@ -193,17 +192,43 @@ bool musicalGame(Character& player, bool isRetry = false, int difficultyLevel = 
         displaySpeakerDialogue("Hades", "Impressive. Your memory serves you well.");
         return true;
     }
-// Before the Fates Challenge starts
-if (player.faith >= 70.0f) {
-    displaySpeakerDialogue("Fates", "*Strong thread yet, little songbird... but can you hold it?*");
-} else if (player.faith >= 40.0f) {
-    displaySpeakerDialogue("Fates", "*The thread frays... one wrong note and you're gone.*");
-} else {
-    displaySpeakerDialogue("Fates", "*Ha! Barely a thread left! One pull and you fall apart.*");
+
+    return false; // fallback, shouldn't normally hit
 }
 
-// Start the Fates Challenge
-bool fatesChallenge = musicalGame(true, 3);
+// --------------------------------
+// Randomized Fate Taunt Function
+// --------------------------------
+void randomizedFatesTaunt(const Character& player) 
+{
+    vector<string> strongFaithTaunts = {
+        "*Strong thread yet, little songbird... but can you hold it?*",
+        "*A golden thread, spun tight... but even gold can snap.*",
+        "*You shine still... will you survive the loom?*"
+    };
+
+    vector<string> mediumFaithTaunts = {
+        "*The thread frays... one wrong note and you're gone.*",
+        "*Your fate hangs by a thread, boy.*",
+        "*The loom trembles. Your song grows thin.*"
+    };
+
+    vector<string> weakFaithTaunts = {
+        "*Ha! Barely a thread left! One pull and you fall apart.*",
+        "*A breath could scatter you to dust.*",
+        "*The song is almost over. One wrong note, and you're lost forever.*"
+    };
+
+    if (player.faith >= 70.0f) {
+        int idx = rand() % strongFaithTaunts.size();
+        displaySpeakerDialogue("Fates", strongFaithTaunts[idx]);
+    } else if (player.faith >= 40.0f) {
+        int idx = rand() % mediumFaithTaunts.size();
+        displaySpeakerDialogue("Fates", mediumFaithTaunts[idx]);
+    } else {
+        int idx = rand() % weakFaithTaunts.size();
+        displaySpeakerDialogue("Fates", weakFaithTaunts[idx]);
+    }
 }
 
 // Function to ask faith-related questions and impact the player's faith level
@@ -239,3 +264,4 @@ void askFaithQuestions(Character& player) {
         }
 
     }
+}

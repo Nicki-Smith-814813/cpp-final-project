@@ -13,6 +13,12 @@
 
 using namespace std;
 
+#ifdef AUTOSAVE
+    #define AUTO_SAVE(player) saveGame(player, "autosave.dat")
+#else
+    #define AUTO_SAVE(player) // nothing
+#endif
+
 
 // Constructor
 Game::Game() {
@@ -27,15 +33,34 @@ void Game::init() {
 // Main game start function
 void Game::start() {
     cout << "Welcome to 'Hadestown'..." << endl;
+    
+    #ifdef AUTOSAVE
+    cout << "\n[Autosave Mode Activated]\n" << endl;
+#endif
 
     scene_00_waydown(player);
+    AUTO_SAVE(player);
+
     scene_01_chantI(player);
+    AUTO_SAVE(player);
+
     scene_02_waitForMe(player);
+    AUTO_SAVE(player);
+
     scene_03_howLong(player);
+    AUTO_SAVE(player);
+
     scene_04_chantII(player);
+    AUTO_SAVE(player);
+
     scene_05_epicIII(player);
+    AUTO_SAVE(player);
+
     scene_06_doubtComesIn(player);
+    AUTO_SAVE(player);
+
     scene_07_roadToHell(player);
+    AUTO_SAVE(player);
 
     endGame();
 }

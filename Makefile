@@ -7,8 +7,9 @@ SRC_DIR = src
 BUILD_DIR = build
 BIN_DIR = bin
 
-# Target executable
+# Targets
 TARGET = $(BIN_DIR)/game
+AUTOSAVE_TARGET = $(BIN_DIR)/autosave_game
 
 # Default build type
 BUILD_TYPE ?= Release
@@ -26,11 +27,15 @@ OBJECTS := $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 # Default target
 all: $(TARGET)
 
-# Linking
+# Linking normal game
 $(TARGET): $(OBJECTS) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Compiling
+# Linking autosave game
+$(AUTOSAVE_TARGET): $(OBJECTS) | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) -DAUTOSAVE -o $@ $^
+
+# Compiling .cpp to .o
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -42,10 +47,15 @@ $(BUILD_DIR):
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
-# Run shortcut: Build and run the game
-run: all
+# Run normal
+run: $(TARGET)
 	@echo "Starting the game..."
-	@$(TARGET)
+	@./$(TARGET)
+
+# Run autosave
+autosave: $(AUTOSAVE_TARGET)
+	@echo "Starting the autosave-enabled game..."
+	@./$(AUTOSAVE_TARGET)
 
 # Aliases
 debug:
@@ -59,4 +69,4 @@ clean:
 	rm -rf $(BUILD_DIR) $(BIN_DIR)
 
 # Phony targets
-.PHONY: all clean debug release run
+.PHONY: all clean debug release run autosave
