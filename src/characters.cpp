@@ -7,4 +7,4 @@ void Character::displayStats() {
     std::cout << "Trust: " << trust << "\n";
 }
 
-float faith = 50.0f;  // Initial value for faith
+float faith = 100.0f;  // Initial value for faith
