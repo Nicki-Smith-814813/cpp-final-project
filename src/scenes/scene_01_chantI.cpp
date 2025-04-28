@@ -9,7 +9,7 @@ using namespace std;
 void scene_01_chantI(Character& player) {
     displayDialogue("The journey begins... Orpheus, your music has the power to heal, but does it have the power to save?\n");
     displayDialogue("You see Eurydice across the distance, her figure shimmering with uncertainty. But in her eyes, there is hope—a fragile hope.\n");
-    displayDialogue("'Eurydice... I'm coming for you,' you say, heart pounding, determined to overcome whatever stands in your way.\n");
+    displaySpeakerDialogue("Orpheus","'Eurydice... I'm coming for you,' you say, heart pounding, determined to overcome whatever stands in your way.\n");
     displayDialogue("The road to Hadestown is long, and the Fates are watching...\n");
 
     // Player makes a choice: Listen to Eurydice's concerns or stay focused on the song

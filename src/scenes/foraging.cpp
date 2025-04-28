@@ -10,23 +10,23 @@ void forageForResources() {
     int foodGathered = 0;
 
     // Let the player gather resources
-    cout << "You and Eurydice head out into the woods to gather food and firewood.\n";
-    cout << "You have some time, but not a lot, and you need to make the most of it.\n";
+    displayDialogue("You and Eurydice head out into the woods to gather food and firewood.\n");
+    displayDialogue("You have some time, but not a lot, and you need to make the most of it.\n");
 
     // Foraging attempt: the player gathers a mix of wood and food.
     for (int i = 0; i < 3; ++i) {
         int outcome = rand() % 2; // Random success (0 or 1)
         if (outcome == 0) {
             woodGathered++;
-            cout << "You successfully gather some firewood.\n";
+            displayDialogue( "You successfully gather some firewood.\n");
         } else {
             foodGathered++;
-            cout << "You find some food to bring back.\n";
+            displayDialogue("You find some food to bring back.\n");
         }
     }
 
     // After foraging, check how well the player did
-    cout << "You return to Eurydice with your haul.\n";
+    displayDialogue("You return to Eurydice with your haul.\n");
 
     if (woodGathered >= 2 && foodGathered >= 2) {
         displayDialogue("You’ve done well gathering enough food and firewood. Eurydice seems satisfied and relieved.");

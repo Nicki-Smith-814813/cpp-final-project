@@ -77,7 +77,7 @@ void mythQuestions() {
     if (correctAnswers >= 2) {
         displayDialogue("The Fates seem to soften their stance, impressed with your knowledge.");
     } else {
-        displayDialogue("The Fates sneer. 'Not enough knowledge to change the fate of others.'");
+        displaySpeakerDialogue("Fates","The Fates sneer. 'Not enough knowledge to change the fate of others.'");
     }
 
     cout << "Your current faith level: " << faith << "%\n";
@@ -143,7 +143,7 @@ bool musicalGame() {
 
     // Start the musical game
     displayDialogue("Hades leans back, watching Orpheus with a calculating gaze.\n");
-    displayDialogue("'Alright, Orpheus,' Hades says, 'Let’s see if you can truly sing your way out of this place. Follow the sequence and show me you're worthy of leaving Hadestown.'\n");
+    displaySpeakerDialogue("Hades","'Alright, Orpheus,' Hades says, 'Let’s see if you can truly sing your way out of this place. Follow the sequence and show me you're worthy of leaving Hadestown.'\n");
 
     // Generate a random sequence of notes (a simple melody)
     int melody[3];
@@ -152,7 +152,7 @@ bool musicalGame() {
     }
 
     // Display the melody for the player to follow
-    displayDialogue("Here’s the melody. Follow it.\n");
+    displaySpeakerDialogue("Hades","Here’s the melody. Follow it.\n");
     for (int i = 0; i < 3; ++i) {
         cout << notes[melody[i]] << " ";
     }
@@ -174,7 +174,9 @@ bool musicalGame() {
 
     // If the player matches the entire melody
     if (score == 3) {
-        displayDialogue("'Well done, Orpheus,' Hades says, clearly impressed. 'You’ve earned it. You and Eurydice may leave Hadestown.'\n");
+        displaySpeakerDialogue("Hades","'Well done, Orpheus,'");
+        displayDialogue("Hades says, clearly impressed.");
+        displaySpeakerDialogue("Hades","'You’ve earned it. You and Eurydice may leave Hadestown.'\n");
         return true;  // Player succeeded
     }
 
