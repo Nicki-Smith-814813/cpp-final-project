@@ -6,6 +6,7 @@
 #include "scenes/faithSystem.h"
 #include "characters.h"
 #include "utils.h"
+
 using namespace std;
 
 void increaseFaith(Character& player, float amount) {
@@ -102,7 +103,7 @@ bool hadesSaysChallenge() {
     };
 
     vector<string> sequence;
-    int rounds = 3; // How many commands to memorize (you can increase this for harder)
+    int rounds = 5; // How many commands to memorize (you can increase this for harder)
 
     // Generate the sequence
     for (int i = 0; i < rounds; ++i) {
@@ -130,57 +131,79 @@ bool hadesSaysChallenge() {
     return true;
 }
 
-bool musicalGame() {
+// Musical challenge function
+bool musicalGame(Character& player, bool isRetry = false, int difficultyLevel = 1)
+ {
+    if (isRetry) {
+        displaySpeakerDialogue("Hades", "You dare try again, boy? The melody grows longer...");
+    } else {
+        displaySpeakerDialogue("Hades", "Let's see if you can truly sing your way out of this place.");
+    }
+
+    int melodyLength;
+    if (difficultyLevel == 1) {
+        melodyLength = 5;
+    } else if (difficultyLevel == 2) {
+        melodyLength = 7;
+        displaySpeakerDialogue("Fates", "*The melody grows longer... the threads twist tighter...*");
+    } else {
+        melodyLength = 10;
+        displaySpeakerDialogue("Fates", "*The melody is endless, boy... Can you even hear it anymore?*");
+    }
+
     string playerInput;
     int score = 0;
 
-    // A simple sequence of notes (or rhythm) for Orpheus to follow
-    string notes[] = {"Do", "Re", "Mi", "Fa", "So"};
-    int numNotes = 5;
+    string notes[] = {"Do", "Re", "Mi", "Fa", "So", "La", "Ti"};
+    int numNotes = 7;
 
-    // Seed the random number generator
     srand(time(0));
 
-    // Start the musical game
-    displayDialogue("Hades leans back, watching Orpheus with a calculating gaze.\n");
-    displaySpeakerDialogue("Hades","'Alright, Orpheus,' Hades says, 'Let’s see if you can truly sing your way out of this place. Follow the sequence and show me you're worthy of leaving Hadestown.'\n");
+    displayDialogue("Hades leans back, watching Orpheus with an iron gaze...");
+    displaySpeakerDialogue("Hades", "Here’s the melody. Listen carefully.\n");
 
-    // Generate a random sequence of notes (a simple melody)
-    int melody[3];
-    for (int i = 0; i < 3; ++i) {
-        melody[i] = rand() % numNotes;  // Randomly select notes
+    vector<string> melody;
+
+    // Generate and show melody with erasing effect
+    for (int i = 0; i < melodyLength; ++i) {
+        int index = rand() % numNotes;
+        melody.push_back(notes[index]);
+
+        cout << melody[i] << " " << flush;
+        dramaticPause(500);
+
+        cout << "\r      \r" << flush;
+        dramaticPause(300);
     }
+    cout << "\n\n";
 
-    // Display the melody for the player to follow
-    displaySpeakerDialogue("Hades","Here’s the melody. Follow it.\n");
-    for (int i = 0; i < 3; ++i) {
-        cout << notes[melody[i]] << " ";
-    }
-    cout << "\n";
-
-    // Ask the player to repeat the melody
-    cout << "Enter the melody sequence (Do, Re, Mi, Fa, So): ";
-    for (int i = 0; i < 3; ++i) {
+    // Player must repeat the melody
+    cout << "Enter the melody sequence (type: Do, Re, Mi, Fa, So, La, Ti):\n";
+    for (int i = 0; i < melodyLength; ++i) {
         cin >> playerInput;
-        
-        // Check if player’s input matches the generated melody
-        if (playerInput == notes[melody[i]]) {
+        if (playerInput == melody[i]) {
             score++;
         } else {
-            displayDialogue("You missed a note! Try again.\n");
-            return false;  // Player failed, return false
+            displaySpeakerDialogue("Fates", "*You falter... the thread snaps.*");
+            return false;
         }
     }
 
-    // If the player matches the entire melody
-    if (score == 3) {
-        displaySpeakerDialogue("Hades","'Well done, Orpheus,'");
-        displayDialogue("Hades says, clearly impressed.");
-        displaySpeakerDialogue("Hades","'You’ve earned it. You and Eurydice may leave Hadestown.'\n");
-        return true;  // Player succeeded
+    if (score == melodyLength) {
+        displaySpeakerDialogue("Hades", "Impressive. Your memory serves you well.");
+        return true;
     }
+// Before the Fates Challenge starts
+if (player.faith >= 70.0f) {
+    displaySpeakerDialogue("Fates", "*Strong thread yet, little songbird... but can you hold it?*");
+} else if (player.faith >= 40.0f) {
+    displaySpeakerDialogue("Fates", "*The thread frays... one wrong note and you're gone.*");
+} else {
+    displaySpeakerDialogue("Fates", "*Ha! Barely a thread left! One pull and you fall apart.*");
+}
 
-    return false;  // Player failed
+// Start the Fates Challenge
+bool fatesChallenge = musicalGame(true, 3);
 }
 
 // Function to ask faith-related questions and impact the player's faith level
@@ -215,7 +238,4 @@ void askFaithQuestions(Character& player) {
             if (player.faith < 0.0f) player.faith = 0.0f;
         }
 
-        questions.erase(questions.begin() + index); // Remove used question
     }
-}
-

@@ -83,6 +83,12 @@ void clearScreen() {
 #endif
 }
 
+void dramaticPause(int milliseconds = 1000) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+    clearScreen();
+}
+
+
 void pause() {
     cout << "\n(Press Enter to continue...)\n";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');

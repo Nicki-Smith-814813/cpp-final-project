@@ -16,7 +16,7 @@ enum class Speaker {
 void displayDialogue(const std::string& message, int delayMs = 30); // narration
 void displaySpeakerDialogue(const std::string& speaker, const std::string& message);
 void displayChoice(const std::string& prompt, const std::string choices[], int numChoices);
-void clearScreen();
+void dramaticPause(int ms);
 void pause();
 
 #pragma once

@@ -14,7 +14,7 @@ void mythQuestions(Character& player);
 bool hadesSaysChallenge();
 
 //The lyre song scene game
-bool musicalGame();
+bool musicalGame(Character& player, bool isRetry = false, int difficultyLevel = 1);
 
 //Doubt comes in with tricky fingers.
 void askFaithQuestions(Character& player);
