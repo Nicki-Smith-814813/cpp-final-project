@@ -89,7 +89,6 @@ bool hadesSaysChallenge() {
     cout << "\nHades' eyes gleam. \"Let's see if you can remember, mortal.\"\n";
     cout << "He begins issuing commands, one after another...\n\n";
 
-    srand(time(0)); // Seed random generator
 
     vector<string> possibleCommands = {
         "Bow",
@@ -156,7 +155,7 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel)
     string notes[] = {"Do", "Re", "Mi", "Fa", "So", "La", "Ti"};
     int numNotes = 7;
 
-    srand(time(0));
+    
 
     displayDialogue("Hades leans back, watching Orpheus with an iron gaze...");
     displaySpeakerDialogue("Hades", "Here’s the melody. Listen carefully.\n");
@@ -175,6 +174,11 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel)
         dramaticPause(300);
     }
     cout << "\n\n";
+    cout << "\n\n";
+
+    // IMPORTANT: clear input buffer
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     // Player must repeat the melody
     cout << "Enter the melody sequence (type: Do, Re, Mi, Fa, So, La, Ti):\n";
@@ -184,10 +188,9 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel)
             score++;
         } else {
             displaySpeakerDialogue("Fates", "*You falter... the thread snaps.*");
-            return false; // fail immediately on wrong input
+            return false; // fail immediately
         }
     }
-
     if (score == melodyLength) {
         displaySpeakerDialogue("Hades", "Impressive. Your memory serves you well.");
         return true;

@@ -36,7 +36,8 @@ void scene_05_epicIII(Character& player) {
             displayDialogue("Persephone steps forward, fury in her voice.");
 
             displaySpeakerDialogue("Fates", "One. Last. Thread.");
-            randomizedFatesTaunt(player); // <- NEW clean call to random fate taunt
+            
+            randomizedFatesTaunt(player); 
 
             bool finalChance = musicalGame(player, true, 3); // final challenge (10 notes)
 
