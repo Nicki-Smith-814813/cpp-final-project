@@ -1,91 +1,105 @@
-🎭 Hadestown: The Text-Based RPG
+🎵 Hadestown: A C++ Text-Based RPG Adventure
 
 
 
+📖 About the Project
 
-Welcome to Hadestown, a mythic, musical journey through a world of gods, bargains, and impossible choices.
-This is a C++ text-based RPG where you step into the sandals of Orpheus, braving the underworld to bring back the one you love.
+Hadestown: The RPG is a cinematic, text-driven journey inspired by Hadestown, built entirely in C++.
 
-"The world we dream about and the one we live in now..."
+You play as Orpheus, a dreamer, a musician, and a fool for love.
+Navigate the underworld, challenge the gods, face the Fates, and see if your courage — and your memory — can save Eurydice.
 
-🌟 About the Game
-Genre: Text-Based Role-Playing Game (RPG)
+🛠️ Features
 
-Theme: Greek Mythology — Inspired by the musical Hadestown by Anaïs Mitchell
+🎭 Dynamic Narrative: Rich storytelling with player-driven dialogue choices.
 
-Language: C++
+🎶 Musical Memory Challenge: Follow and repeat randomized melodies to survive trials.
 
-Platform: Terminal / Command Line Interface (CLI)
+💀 Faith System: Dynamic stats (Faith, Trust) that react to your decisions.
 
-Hadestown combines narrative-driven choices, branching dialogue, inventory management, and puzzle-solving into an emotional, atmospheric journey where every decision matters.
+🔮 Dynamic Fates AI: Randomized taunts based on your Faith level.
 
-🎮 Features
-Dynamic Storytelling:
-Your choices shape trust, faith, and destiny.
+🎲 RNG Gameplay: Randomized challenges and outcomes.
 
-Inventory System:
-Manage items, gifts, and offerings to navigate the dangers of the Underworld.
+📁 Binary Save System: Autosaves after every major scene to save.dat.
 
-Turn-Based Challenges:
-Solve riddles from the Fates and endure Underworld trials.
+🛡️ Robust Input Validation: No crashing on bad input.
 
-Mythological Encounters:
-Meet figures like Hermes, Eurydice, the Fates, Hades, and Persephone.
+🎨 ASCII-styled Dialogue Effects: Dramatic timed pauses and text flow.
 
-Multiple Endings:
-Achieve different outcomes based on your decisions and faith.
+🔧 Technical Requirements Met
 
-🛠 Project Structure
+Requirement	Status
+User-Defined Functions (4+)	✅
+Overloaded Function	✅ (dramaticPause() variants)
+Arrays & Strings	✅ (melodies, taunts, dialogues)
+Control Structures	✅ (loops, if-else, switch)
+File Handling	✅ (binary save/load)
+Error Handling / Input Validation	✅
+Modular Code & Headers	✅ (separate .h and .cpp files)
+Structs & Vectors	✅ (Character struct, multiple vectors)
+Randomization/Interactivity (AI)	✅
+Optional Enhancements:	
+Recursion	✅ (tiny utility use)
+ASCII UI Effects	✅
 
-Path	Purpose
-src/	C++ source files (.cpp)
-include/	C++ header files (.h)
-bin/	Compiled game executable
-build/	Temporary object files (.o)
-Makefile	Build automation rules
-.vscode/	Dev environment configuration
+📂 Project Structure
+cpp-final-project/
+├── include/
+│   ├── game.h
+│   ├── utils.h
+│   ├── characters.h
+│   └── scenes/
+│       └── (all scene headers here)
+├── src/
+│   ├── main.cpp
+│   ├── game.cpp
+│   ├── utils.cpp
+│   ├── characters.cpp
+│   └── scenes/
+│       └── (all scene implementations here)
+├── build/
+│   └── (object files generated here)
+├── bin/
+│   ├── game (normal build)
+│   └── autosave_game (autosave build)
+├── Makefile
+├── README.md
+├── LICENSE
+└── save.dat (auto-created during gameplay)
 
-🚀 How to Build and Run
-#Requirements
 
-C++17-compatible compiler (e.g., g++ 9.3.0 or later)
+🚀 How to Compile and Run (in GitHub CodeSpaces)
+1. Open your CodeSpaces terminal.
 
-Make
+2. Build the normal game:
 
-Build Commands
+make run
 
-make release      # Build optimized release version
+3. OR Build the autosave version:
 
-make debug        # Build with debug symbols for debugging
+make autosave
+(Either way, it creates clean builds into /bin/)
 
-make run          # Build and immediately run the game
+If you want to clean up:
 
-make clean        # Remove build artifacts
+make clean
+
+👏 Credits
+Project Lead, Code Architect: [Nicki-Smith-814813]
+
+Worldbuilding & Mythology: Inspired by Hadestown and Greek myth.
 
 
-Controls:
+Fonts/Graphics: ASCII styled text only (terminal output).
 
-Enter numbers to choose dialogue options.
+📜 License
+This project is licensed under the MIT License — see the LICENSE file for details.
 
-Follow on-screen prompts during puzzles and mini-games.
+⚡ Final Thoughts
+"Some birds sing when they're broken hearted... but you have to sing even when you can't see the sky."
+— Inspired by Hadestown
 
-Success in certain challenges depends on your faith and trust stats!
+This game is about faith, trust, and fighting the darkness even when the odds are against you.
 
-📜 Credits and Acknowledgments
-
-Story inspired by Hadestown — a musical by Anaïs Mitchell.
-
-Mythological elements adapted from Greek mythology.
-
-Game design, programming, and adaptation by Nicki Smith.
-
-⚡ Known Issues and Future Work
-No known critical issues at this time.
-
-Future plans: Add ASCII art animations and optional background music integration (SFML or simple .wav/.mp3 playback).
-
-📖 License
-For educational and personal use only.
-Commercial use prohibited.
-
-🎶 "Come see how the world could be..." 🎶
+Thanks for playing — and good luck on your journey. 🌑🎵
