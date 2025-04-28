@@ -5,6 +5,18 @@
 #include <vector>
 using namespace std;
 
+// Forward declare helpers
+void hermesNarration();
+void talkToEurydice(Character& player);
+void persephoneAndHadesConflict();
+
+// Scene entry point
+void scene_00_waydown(Character& player) {
+    hermesNarration();
+    talkToEurydice(player);
+    persephoneAndHadesConflict();
+}
+
 // Hermes' Narration
 void hermesNarration() {
     displaySpeakerDialogue("Hermes", "Ah, Orpheus, a dreamer with a heart full of music... But your journey is not one of simple melodies.");

@@ -41,27 +41,32 @@ string getSpeakerName(Speaker speaker) {
     }
 }
 
-void displayDialogue(const string& dialogue, Speaker speaker) {
-    string color = getSpeakerColor(speaker);
-    string name = getSpeakerName(speaker);
-
-    if (!name.empty()) {
-        cout << color << name << ":" << RESET << "\n";
+void displayDialogue(const string& message, int delayMs) {
+    for (char c : message) {
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(delayMs));
     }
-
-    // Simulate slight "shaking" for dramatic tension
-    for (char c : dialogue) {
-        cout << color << c << RESET << flush;
-        this_thread::sleep_for(chrono::milliseconds(30));
-
-        // Random tiny horizontal shake (space insertions)
-        if (rand() % 50 == 0) {
-            cout << ' ' << flush;
-        }
-    }
-    cout << "\n\n";
-    pause();
+    cout << endl;
 }
+
+void displaySpeakerDialogue(const string& speaker, const string& message) {
+    if (speaker == "Hermes") {
+        cout << "\033[37m" << speaker << ": " << message << "\033[0m" << endl;
+    } else if (speaker == "Hades") {
+        cout << "\033[31m" << speaker << ": " << message << "\033[0m" << endl;
+    } else if (speaker == "Persephone") {
+        cout << "\033[32m" << speaker << ": " << message << "\033[0m" << endl;
+    } else if (speaker == "Orpheus") {
+        cout << "\033[33m" << speaker << ": " << message << "\033[0m" << endl;
+    } else if (speaker == "Fates") {
+        cout << "\033[34m" << speaker << ": " << message << "\033[0m" << endl;
+    } else if (speaker == "Eurydice") {
+        cout << "\033[36m" << speaker << ": " << message << "\033[0m" << endl;
+    } else {
+        cout << speaker << ": " << message << endl;
+    }
+}
+
 
 void displayChoice(const string& prompt, const string choices[], int numChoices) {
     cout << prompt << "\n";
@@ -86,11 +91,14 @@ void pause() {
 
 
 void saveGame(const Character& player, const std::string& filename) {
-    std::ofstream outFile(filename);
+    std::ofstream outFile(filename, std::ios::binary);
     if (outFile.is_open()) {
-        outFile << player.name << "\n"
-                << player.faith << "\n"
-                << player.trust << "\n";
+        size_t nameLength = player.name.size();
+        outFile.write(reinterpret_cast<const char*>(&nameLength), sizeof(nameLength)); // save length
+        outFile.write(player.name.c_str(), nameLength);                                // save actual name
+
+        outFile.write(reinterpret_cast<const char*>(&player.faith), sizeof(player.faith));
+        outFile.write(reinterpret_cast<const char*>(&player.trust), sizeof(player.trust));
         outFile.close();
     } else {
         std::cout << "Error saving game.\n";
@@ -98,11 +106,16 @@ void saveGame(const Character& player, const std::string& filename) {
 }
 
 bool loadGame(Character& player, const std::string& filename) {
-    std::ifstream inFile(filename);
+    std::ifstream inFile(filename, std::ios::binary);
     if (inFile.is_open()) {
-        getline(inFile, player.name);
-        inFile >> player.faith
-               >> player.trust;
+        size_t nameLength = 0;
+        inFile.read(reinterpret_cast<char*>(&nameLength), sizeof(nameLength));
+
+        player.name.resize(nameLength);
+        inFile.read(&player.name[0], nameLength);
+
+        inFile.read(reinterpret_cast<char*>(&player.faith), sizeof(player.faith));
+        inFile.read(reinterpret_cast<char*>(&player.trust), sizeof(player.trust));
         inFile.close();
         return true;
     } else {
@@ -111,6 +124,11 @@ bool loadGame(Character& player, const std::string& filename) {
     }
 }
 
+
+void autosave(const Character& player) {
+    saveGame(player, "savefile.dat");
+    std::cout << "(Game autosaved.)\n";
+}
 
 
 int getValidatedInput(int min, int max) {

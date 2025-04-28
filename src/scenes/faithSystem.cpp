@@ -18,7 +18,7 @@ void decreaseFaith(Character& player, float amount) {
     if (player.faith < 0.0f) player.faith = 0.0f;
 }
 // Function to handle Fates' questions
-void mythQuestions() {
+void mythQuestions(Character& player) {
     int correctAnswers = 0;
 
     cout << "The Fates swirl around you, their voices sharp and mocking.\n";
@@ -181,5 +181,41 @@ bool musicalGame() {
     }
 
     return false;  // Player failed
+}
+
+// Function to ask faith-related questions and impact the player's faith level
+void askFaithQuestions(Character& player) {
+    srand(time(0)); // Random seed
+
+    vector<pair<string, int>> questions = {
+        {"Who was cursed to push a boulder uphill for eternity?\n1. Sisyphus\n2. Tantalus\n3. Icarus\n", 1},
+        {"Which god was born fully armored from Zeus' head?\n1. Artemis\n2. Athena\n3. Apollo\n", 2},
+        {"Who is the goddess of witchcraft and crossroads?\n1. Hera\n2. Hecate\n3. Demeter\n", 2},
+        {"Who ferries souls across the river Styx?\n1. Hermes\n2. Charon\n3. Thanatos\n", 2}
+    };
+
+    // Ask 2 random faith-doubt questions
+    for (int i = 0; i < 2; ++i) {
+        int index = rand() % questions.size();
+
+        // Ask the question
+        displaySpeakerDialogue("Fates", questions[index].first);
+        cout << "Enter your answer (1, 2, or 3): ";
+
+        int answer;
+        cin >> answer;
+
+        if (answer == questions[index].second) {
+            displaySpeakerDialogue("Fates", "Maybe you know a thing or two...");
+            player.faith += 5;
+            if (player.faith > 100.0f) player.faith = 100.0f;
+        } else {
+            displaySpeakerDialogue("Fates", "Didn't think so. Little songbird lost.");
+            player.faith -= 10;
+            if (player.faith < 0.0f) player.faith = 0.0f;
+        }
+
+        questions.erase(questions.begin() + index); // Remove used question
+    }
 }
 

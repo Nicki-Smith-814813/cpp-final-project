@@ -1,6 +1,7 @@
 #include "utils.h"
 #include "scenes/scene_06_doubtComesIn.h"
 #include "characters.h"
+#include "scenes/faithSystem.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -19,36 +20,8 @@ void scene_06_doubtComesIn(Character& player) {
 
     displayDialogue("You grit your teeth. You press on.\n");
     
-    // Mythological Doubt Quiz
-    srand(time(0)); // Random seed
+    askFaithQuestions(player);
 
-    vector<pair<string, int>> questions = {
-        {"Who was cursed to push a boulder uphill for eternity?\n1. Sisyphus\n2. Tantalus\n3. Icarus\n", 1},
-        {"Which god was born fully armored from Zeus' head?\n1. Artemis\n2. Athena\n3. Apollo\n", 2},
-        {"Who is the goddess of witchcraft and crossroads?\n1. Hera\n2. Hecate\n3. Demeter\n", 2},
-        {"Who ferries souls across the river Styx?\n1. Hermes\n2. Charon\n3. Thanatos\n", 2}
-    };
-
-    // Ask 2 random doubt questions
-    for (int i = 0; i < 2; ++i) {
-        int index = rand() % questions.size();
-        cout << questions[index].first;
-        cout << "Enter your answer (1, 2, or 3): ";
-        int answer;
-        cin >> answer;
-
-        if (answer == questions[index].second) {
-            displaySpeakerDialogue("Fates", "Maybe you know a thing or two...");
-            player.faith += 5;
-            if (player.faith > 100.0f) player.faith = 100.0f;
-        } else {
-            displaySpeakerDialogue("Fates", "Didn't think so. Little songbird lost.");
-            player.faith -= 10;
-            if (player.faith < 0.0f) player.faith = 0.0f;
-        }
-
-        questions.erase(questions.begin() + index); // Remove asked question
-    }
 
     displayDialogue("\nThe whispers grow louder. The doubt heavier.\n");
 

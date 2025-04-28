@@ -41,6 +41,7 @@ void Game::start() {
 }
 
 
+
 // Endgame sequence
 void Game::endGame() {
     cout << "\nThanks for playing!" << endl;

@@ -17,5 +17,6 @@ bool hadesSaysChallenge();
 bool musicalGame();
 
 //Doubt comes in with tricky fingers.
-void askFaithQuestions();
+void askFaithQuestions(Character& player);
+
 #endif

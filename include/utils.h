@@ -25,6 +25,8 @@ void pause();
 void saveGame(const Character& player, const std::string& filename);
 bool loadGame(Character& player, const std::string& filename);
 
+void autosave(const Character& player);
+
 int getValidatedInput(int min, int max);
 
 #endif

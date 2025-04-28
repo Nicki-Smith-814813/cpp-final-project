@@ -3,7 +3,7 @@
 #include "scenes/scene_05_epicIII.h"
 #include "characters.h"
 
-void epicIII(Character& player) {
+void scene_05_epicIII(Character& player) {
     displayDialogue("The Fates circle around Hades, whispering in his ear with venomous doubt.");
     displaySpeakerDialogue("Fates","'Are you sure about this, Hades? Letting them go? It could unravel everything you've built,'");
     displayDialogue("The fates hiss like a serpent waiting to strike.");
