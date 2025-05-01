@@ -75,13 +75,6 @@ void displayChoice(const string& prompt, const string choices[], int numChoices)
     }
 }
 
-void clearScreen() {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
 
 void dramaticPause(int milliseconds = 1000) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));

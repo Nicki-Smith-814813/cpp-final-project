@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <limits>
 #include "scenes/faithSystem.h"
 #include "characters.h"
 #include "utils.h"
@@ -250,15 +251,28 @@ void askFaithQuestions(Character& player) {
     // Ask 2 random faith-doubt questions
     for (int i = 0; i < 2; ++i) {
         int index = rand() % questions.size();
-
-        // Ask the question
-        displaySpeakerDialogue("Fates", questions[index].first);
-        cout << "Enter your answer (1, 2, or 3): ";
-
+        auto question = questions[index];
+        questions.erase(questions.begin() + index); // Remove it so it can't repeat
+    
         int answer;
-        cin >> answer;
-
-        if (answer == questions[index].second) {
+        bool valid = false;
+    
+        while (!valid) {
+            displaySpeakerDialogue("Fates", question.first);
+            cout << "Enter your answer (1, 2, or 3): ";
+    
+            cin >> answer;
+    
+            if (cin.fail() || answer < 1 || answer > 3) {
+                cin.clear(); // clear error state
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // flush bad input
+                displaySpeakerDialogue("Fates", "Tsk. We said *1, 2, or 3*, songbird.");
+            } else {
+                valid = true;
+            }
+        }
+    
+        if (answer == question.second) {
             displaySpeakerDialogue("Fates", "Maybe you know a thing or two...");
             player.faith += 5;
             if (player.faith > 100.0f) player.faith = 100.0f;
@@ -267,6 +281,6 @@ void askFaithQuestions(Character& player) {
             player.faith -= 10;
             if (player.faith < 0.0f) player.faith = 0.0f;
         }
-
     }
+    
 }
