@@ -1,7 +1,13 @@
 #include "utils.h"
 #include "scenes/scene_03_howLong.h"
 #include "characters.h"
+
+
+
 void scene_03_howLong(Character& player) {
+
+    printAsciiArt("wine.txt");
+    
     displayDialogue("The scene opens in the grand, dimly lit quarters of the Underworld’s ruling couple.\n");
     displayDialogue("Persephone is pacing, clearly agitated, while Hades remains seated, his brow furrowed as he stares into the distance.\n");
 

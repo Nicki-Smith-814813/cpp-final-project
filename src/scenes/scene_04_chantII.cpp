@@ -4,6 +4,7 @@
 #include "characters.h"
 // Function to handle the chantII scene
 void scene_04_chantII(Character& player) {
+    printAsciiArt("hades.txt");
     displayDialogue("Hades stands before Orpheus, a smirk crossing his face as he issues the challenge.\n");
     displaySpeakerDialogue("Hades","'Alright, Orpheus,'");
     displayDialogue(" Hades says,");

@@ -20,6 +20,8 @@ void decreaseFaith(Character& player, float amount) {
 }
 // Function to handle Fates' questions
 void mythQuestions(Character& player) {
+
+    printAsciiArt("fates.txt");
     int correctAnswers = 0;
 
     cout << "The Fates swirl around you, their voices sharp and mocking.\n";
@@ -102,7 +104,7 @@ bool hadesSaysChallenge() {
     };
 
     vector<string> sequence;
-    int rounds = 5; // How many commands to memorize (you can increase this for harder)
+    int rounds = 5; // How many commands to memorize
 
     // Generate the sequence
     for (int i = 0; i < rounds; ++i) {

@@ -22,6 +22,7 @@ void scene_05_epicIII(Character& player) {
     displayDialogue("Hades sighs heavily, staring at Orpheus.");
     displaySpeakerDialogue("Hades", "'Alright, Orpheus. One last chance. We'll see if you can survive a musical trial.'");
 
+    printAsciiArt("lyre.txt");
     bool orpheusSuccess = musicalGame(player, false, 1); // First try
 
     if (!orpheusSuccess) {

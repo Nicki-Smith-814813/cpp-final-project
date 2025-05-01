@@ -166,20 +166,15 @@ void clearScreen() {
 }
 
 void printAsciiArt(const std::string& filename) {
-    std::ifstream file(filename);
+    std::ifstream file("assets/ascii/" + filename);
     if (!file) {
-        std::cerr << "Error: Could not load ASCII art from " << filename << std::endl;
+        std::cerr << "Error: Could not load ASCII art: " << filename << std::endl;
         return;
     }
+
     std::string line;
-    while (std::getline(file, line)) {
+    while (getline(file, line)) {
         std::cout << line << std::endl;
     }
 }
 
-void setSceneTheme(const std::string& colorCode, const std::string& asciiArtFile) {
-    clearScreen();
-    std::cout << colorCode;
-    printAsciiArt(asciiArtFile);
-    std::cout << RESET << std::endl; // reset colors after art is printed
-}

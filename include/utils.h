@@ -32,5 +32,7 @@ int getValidatedInput(int min, int max);
 void clearScreen();
 void setSceneTheme(const std::string& colorCode, const std::string& asciiArtFile);
 
+void printAsciiArt(const std::string& filename);
+
 
 #endif
