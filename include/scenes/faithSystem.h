@@ -11,7 +11,7 @@ void decreaseFaith(Character& player, float amount);
 void mythQuestions(Character& player);
 
 //Memory challenge
-bool hadesSaysChallenge();
+bool hadesSaysChallenge(Character& player);
 
 //The lyre song scene game
 bool musicalGame(Character& player, bool isRetry = false, int difficultyLevel = 1);

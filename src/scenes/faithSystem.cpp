@@ -88,50 +88,82 @@ void mythQuestions(Character& player) {
 }
 
 // Function to simulate the hades says challenge
-bool hadesSaysChallenge() {
-    cout << "\nHades' eyes gleam. \"Let's see if you can remember, mortal.\"\n";
-    cout << "He begins issuing commands, one after another...\n\n";
+bool hadesSaysChallenge(Character& player) {
+    srand(time(0));
 
-
-    vector<string> possibleCommands = {
-        "Bow",
-        "Clap",
-        "Stomp",
-        "Spin",
-        "Touch your toes",
-        "Jump",
-        "Raise your hands",
-        "Kneel"
+    vector<string> rawCommands = {
+        "Stomp", "Bow", "Raise your hands", "Spin", "Touch your toes"
     };
 
-    vector<string> sequence;
-    int rounds = 5; // How many commands to memorize
+    vector<string> expectedResponses;
 
-    // Generate the sequence
-    for (int i = 0; i < rounds; ++i) {
-        int index = rand() % possibleCommands.size();
-        sequence.push_back(possibleCommands[index]);
-        cout << "Hades says: " << possibleCommands[index] << endl;
-    }
+    displaySpeakerDialogue("Hades", "Let's see if you can remember, mortal.");
+    displayDialogue("He begins issuing commands, one after another...\n");
 
-    cout << "\nNow, repeat the commands exactly, one at a time.\n";
-    cout << "(Type your responses exactly: example -> Bow)\n\n";
+    for (int i = 0; i < 5; ++i) {
+        int cmdIndex = rand() % rawCommands.size();
+        bool isTrap = rand() % 2 == 0;
 
-    // Player must repeat the sequence
-    for (int i = 0; i < rounds; ++i) {
-        cout << "Command #" << (i+1) << ": ";
-        string response;
-        getline(cin >> ws, response); // Clean input handling
+        string command = rawCommands[cmdIndex];
 
-        if (response != sequence[i]) {
-            cout << "Hades frowns darkly. \"WRONG.\"\n";
-            return false;
+        if (isTrap) {
+            displayDialogue(command);
+            expectedResponses.push_back(""); // player should stay silent
+        } else {
+            displayDialogue("Hades says: " + command);
+            expectedResponses.push_back(command); // player must match
         }
     }
 
-    cout << "Hades chuckles, impressed. \"You have a sharp mind after all.\"\n";
-    return true;
+    displayDialogue("\nNow, repeat the commands exactly, one at a time.");
+    displayDialogue("(Type your responses exactly: example -> Bow)\n");
+
+    int score = 0;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear input buffer
+
+    for (int i = 0; i < 5; ++i) {
+        cout << "Command #" << (i + 1) << ": ";
+        string response;
+        getline(cin, response);
+
+        if (response == expectedResponses[i]) {
+            ++score;
+        }
+    }
+
+    displayDialogue("\nYou got " + to_string(score) + " out of 5 correct.\n");
+
+    // Adjust stats based on performance
+    if (score == 5) {
+        displaySpeakerDialogue("Hades", "Impressive. Maybe there's hope for you yet.");
+        player.faith += 10;
+        player.trust += 10;
+    } else if (score >= 3) {
+        displaySpeakerDialogue("Hades", "You’re not entirely hopeless.");
+        player.faith += 5;
+        player.trust += 5;
+    } else {
+        displaySpeakerDialogue("Hades", "Pathetic. Try harder next time.");
+        player.faith -= 5;
+        player.trust -= 5;
+    }
+
+    // Clamp values between 0 and 100
+    player.faith = max(0, min(100, player.faith));
+    player.trust = max(0, min(100, player.trust));
+
+    return (score >= 3); // return true if pass, false if fail
 }
+
+
+
+
+
+
+
+
+
+
 //Musical challenge
 bool musicalGame(Character& player, bool isRetry, int difficultyLevel) 
 {
