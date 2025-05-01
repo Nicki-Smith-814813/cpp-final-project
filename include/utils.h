@@ -29,4 +29,8 @@ void autosave(const Character& player);
 
 int getValidatedInput(int min, int max);
 
+void clearScreen();
+void setSceneTheme(const std::string& colorCode, const std::string& asciiArtFile);
+
+
 #endif

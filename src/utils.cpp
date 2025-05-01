@@ -151,3 +151,35 @@ int getValidatedInput(int min, int max) {
         }
     }
 }
+
+#define RESET   "\033[0m"
+#define RED     "\033[41m"
+#define GREEN   "\033[42m"
+#define BLUE    "\033[44m"
+#define BLACK   "\033[40m"
+#define WHITE   "\033[47m"
+#define YELLOW  "\033[43m"
+#define CYAN    "\033[46m"
+
+void clearScreen() {
+    std::cout << "\033[2J\033[1;1H"; // ANSI escape to clear screen and reset cursor
+}
+
+void printAsciiArt(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file) {
+        std::cerr << "Error: Could not load ASCII art from " << filename << std::endl;
+        return;
+    }
+    std::string line;
+    while (std::getline(file, line)) {
+        std::cout << line << std::endl;
+    }
+}
+
+void setSceneTheme(const std::string& colorCode, const std::string& asciiArtFile) {
+    clearScreen();
+    std::cout << colorCode;
+    printAsciiArt(asciiArtFile);
+    std::cout << RESET << std::endl; // reset colors after art is printed
+}
