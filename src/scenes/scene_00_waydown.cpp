@@ -35,7 +35,7 @@ void talkToEurydice(Character& player) {
 
     displayDialogue("You approach Eurydice...");
     displaySpeakerDialogue("Narration", "Eurydice stands before you, tired but filled with unyielding faith. She listens to the Fates, but you know her better than anyone.");
-
+    printAsciiArt("eurydice.txt");
     cout << "Choose what to say to Eurydice:\n";
     for (size_t i = 0; i < choices.size(); ++i) {
         cout << i + 1 << ". " << choices[i] << endl;

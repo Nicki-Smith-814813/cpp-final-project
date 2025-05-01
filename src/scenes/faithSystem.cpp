@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 #include <limits>
 #include "scenes/faithSystem.h"
 #include "characters.h"
@@ -19,73 +20,102 @@ void decreaseFaith(Character& player, float amount) {
     player.faith -= amount;
     if (player.faith < 0.0f) player.faith = 0.0f;
 }
-// Function to handle Fates' questions
+struct MythQuestion {
+    string question;
+    vector<string> options;
+    int correctIndex;
+};
+
 void mythQuestions(Character& player) {
+    srand(time(0)); // Seed random
 
     printAsciiArt("fates.txt");
+
+    vector<MythQuestion> questions = {
+        {"Who was the hero that completed the Twelve Labors?", {"Perseus", "Heracles", "Theseus"}, 1},
+        {"Who turned into a spider after being defeated by Athena?", {"Medusa", "Arachne", "Hera"}, 1},
+        {"Who was cursed to turn everything they touched into gold?", {"Midas", "King Minos", "Persephone"}, 0},
+        {"Who ferries souls across the River Styx?", {"Charon", "Hades", "Hermes"}, 0},
+        {"Which goddess is associated with the hearth and home?", {"Athena", "Artemis", "Hestia"}, 2},
+        {"Who is the goddess of love and beauty?", {"Aphrodite", "Hera", "Demeter"}, 0},
+        {"Who flew too close to the sun?", {"Daedalus", "Icarus", "Perseus"}, 1},
+        {"Who opened Pandora’s Box?", {"Hera", "Athena", "Pandora"}, 2},
+        {"Who is the Greek god of war?", {"Apollo", "Ares", "Hephaestus"}, 1},
+        {"Who is the ruler of the Underworld?", {"Poseidon", "Zeus", "Hades"}, 2},
+        {"Which god is known for his winged sandals?", {"Hermes", "Dionysus", "Ares"}, 0},
+        {"Who is the goddess of wisdom?", {"Hera", "Athena", "Hestia"}, 1},
+        {"Who tamed Pegasus?", {"Perseus", "Bellerophon", "Achilles"}, 1},
+        {"Who killed the Minotaur?", {"Theseus", "Heracles", "Jason"}, 0},
+        {"Who stole fire from the gods?", {"Prometheus", "Epimetheus", "Hermes"}, 0},
+        {"Who is the goddess of the hunt?", {"Artemis", "Athena", "Demeter"}, 0},
+        {"Who judged the beauty contest between Hera, Athena, and Aphrodite?", {"Paris", "Achilles", "Odysseus"}, 0},
+        {"Who was punished by having to roll a boulder uphill forever?", {"Tantalus", "Sisyphus", "Orpheus"}, 1},
+        {"Who led the Argonauts?", {"Odysseus", "Theseus", "Jason"}, 2},
+        {"Who is the Greek goddess of agriculture?", {"Hera", "Demeter", "Persephone"}, 1}
+    };
+
+    random_shuffle(questions.begin(), questions.end());
+
     int correctAnswers = 0;
 
-    cout << "The Fates swirl around you, their voices sharp and mocking.\n";
-    cout << "'Let's see if you truly understand the world you're trying to change,' they sneer.\n";
-    
-    // Question 1
-    cout << "Who was the hero that completed the Twelve Labors?\n";
-    cout << "1. Perseus\n";
-    cout << "2. Heracles\n";
-    cout << "3. Theseus\n";
-    cout << "Enter your answer (1, 2, or 3): ";
-    int answer;
-    cin >> answer;
-    if (answer == 2) {
-        cout << "Correct! Heracles did complete the Twelve Labors.\n";
-        correctAnswers++;
-        faith += 10;  // Gain faith for the correct answer
-    } else {
-        cout << "Wrong! The correct answer is Heracles.\n";
-        faith -= 10;  // Lose faith for the wrong answer
+    for (int i = 0; i < 5; ++i) {
+        MythQuestion& q = questions[i];
+
+        // Shuffle options
+        vector<pair<int, string>> shuffled;
+        for (int j = 0; j < 3; ++j) {
+            shuffled.push_back({j, q.options[j]});
+        }
+        random_shuffle(shuffled.begin(), shuffled.end());
+
+        cout << "\n" << q.question << "\n";
+        for (int k = 0; k < shuffled.size(); ++k) {
+            cout << (k + 1) << ". " << shuffled[k].second << "\n";
+        }
+
+        int answer;
+        cout << "Enter your answer (1, 2, or 3): ";
+        cin >> answer;
+
+        int selectedIndex = shuffled[answer - 1].first;
+        if (selectedIndex == q.correctIndex) {
+            displaySpeakerDialogue("Fates", "Correct.");
+            correctAnswers++;
+            player.faith += 10;
+        } else {
+            displaySpeakerDialogue("Fates", "Wrong.");
+            player.faith -= 10;
+        }
+
+        player.faith = max(0, min(100, player.faith));
     }
 
-    // Question 2
-    cout << "Who turned into a spider after being defeated by Athena in a weaving contest?\n";
-    cout << "1. Medusa\n";
-    cout << "2. Arachne\n";
-    cout << "3. Hera\n";
-    cout << "Enter your answer (1, 2, or 3): ";
-    cin >> answer;
-    if (answer == 2) {
-        cout << "Correct! Arachne was turned into a spider.\n";
-        correctAnswers++;
-        faith += 10;
+    // Final response
+    if (correctAnswers == 5) {
+        printAsciiArt("threads_glow.txt");
+        displaySpeakerDialogue("Fates", "'Hmph... Impressive. Even we didn't expect such clarity from a mortal mind.'");
+        displayDialogue("Their threads shimmer like constellations. Perhaps... fate bends.");
+    } else if (correctAnswers >= 3) {
+        displaySpeakerDialogue("Fates", "'You've done... acceptably.'");
+        displayDialogue("They nod with cold amusement. 'The thread trembles, but does not yet snap.'");
+    } else if (correctAnswers == 2) {
+        dramaticPause(800);
+        displayDialogue("\033[38;2;50;50;150mThe air grows heavy.\033[0m");
+        displaySpeakerDialogue("Fates", "'Tch. That barely scratches the surface of truth.'");
+        displayDialogue("They twist their thread tighter. 'We wonder... why you still try.'");
     } else {
-        cout << "Wrong! The correct answer is Arachne.\n";
-        faith -= 10;
+        printAsciiArt("fates_snarl.txt");
+        dramaticPause(1000);
+        displayDialogue("\033[38;2;30;30;100mA chill grips your spine.\033[0m");
+        displaySpeakerDialogue("Fates", "'Pitiful.'");
+        displayDialogue("Their thread coils like a noose. 'You know nothing of fate, songbird.'");
+        displayDialogue("They laugh — shrill and final.");
     }
 
-    // Question 3
-    cout << "Who was cursed to turn everything they touched into gold?\n";
-    cout << "1. Midas\n";
-    cout << "2. King Minos\n";
-    cout << "3. Persephone\n";
-    cout << "Enter your answer (1, 2, or 3): ";
-    cin >> answer;
-    if (answer == 1) {
-        cout << "Correct! King Midas turned everything he touched into gold.\n";
-        correctAnswers++;
-        faith += 10;
-    } else {
-        cout << "Wrong! The correct answer is Midas.\n";
-        faith -= 10;
-    }
-
-    // End the question section
-    if (correctAnswers >= 2) {
-        displayDialogue("The Fates seem to soften their stance, impressed with your knowledge.");
-    } else {
-        displaySpeakerDialogue("Fates","The Fates sneer. 'Not enough knowledge to change the fate of others.'");
-    }
-
-    cout << "Your current faith level: " << faith << "%\n";
+    cout << "Your current faith level: " << player.faith << "%\n";
 }
+
+    
 
 // Function to simulate the hades says challenge
 bool hadesSaysChallenge(Character& player) {

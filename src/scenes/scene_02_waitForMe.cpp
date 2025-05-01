@@ -13,20 +13,5 @@ void scene_02_waitForMe(Character& player) {
     // Begin the journey
     displayDialogue("With a heavy heart, you begin your journey toward Hadestown. The Fates seem to swirl about you, their eyes glinting with malicious amusement.\n");
 
-    mythQuestions(player); //Fates ask questions about Greek myths
-
-    // Outcome based on faith
-    if (faith > 100) {
-        faith = 100;  // Cap faith at 100%
-    } else if (faith <= 0) {
-        faith = 0;  // Don't allow negative faith
-    }
-
-    if (faith >= 75) {
-        displayDialogue("You feel a renewed sense of purpose, bolstered by the knowledge you’ve gained. Eurydice’s memory fuels your determination.\n");
-    } else if (faith >= 50) {
-        displayDialogue("Your resolve is shaky, but you continue the journey, hoping that your faith will strengthen along the way.\n");
-    } else {
-        displayDialogue("Doubt creeps in. The path ahead seems endless, and your faith falters as you press on.\n");
-    }
+    mythQuestions(player);
 }

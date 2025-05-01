@@ -6,11 +6,9 @@
 void scene_07_roadToHell(Character& player) {
 
     extern float faith; 
-    // Intro by Hermes
-    displayDialogue("Hermes' voice, now soft and sorrowful, fills the air...\n");
 
     // Check outcome based on faith value
-    if (faith < 50) {
+    if (faith <= 80) {
         // If Orpheus looked back and failed
         displayDialogue("Hermes sighs deeply, his voice full of mourning.\n");
          displaySpeakerDialogue("Hermes","'Orpheus, you were so close... Yet doubt led you astray. The journey, once so full of hope, has ended in despair. You turned back, and in that moment, Eurydice was lost once more. The Underworld claims her again.'\n");

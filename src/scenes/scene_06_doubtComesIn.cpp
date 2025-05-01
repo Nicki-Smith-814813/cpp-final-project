@@ -31,12 +31,16 @@ void scene_06_doubtComesIn(Character& player) {
     displayDialogue("Your hands tremble. Your heart stutters.\n");
     displayDialogue("One more choice. One last step...\n");
 
-    if (player.faith >= 50) {
+    if (player.faith >= 80) {
         displayDialogue("You trust in love. You trust she follows. You do not turn.\n");
+        displayDialogue("The whispers of doubt fade behind you, powerless now.\n");
     } else {
         displayDialogue("You falter. Fear seizes you.\n");
         displayDialogue("You turn.\n");
+        displayDialogue("The Fates exhale, satisfied.\n");
     }
+    
 
     displayDialogue("The final fate is set...\n");
+    dramaticPause(1000);
 }

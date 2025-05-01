@@ -32,4 +32,4 @@ void scene_04_chantII(Character& player) {
         displayDialogue("Persephone smiles at Orpheus, giving him a reassuring nod.");
         displaySpeakerDialogue("Persephone", "'You’ve got this, Orpheus. Don’t let him win just yet.'");
     }
-    
+}
