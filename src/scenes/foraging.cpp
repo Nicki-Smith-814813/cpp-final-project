@@ -15,7 +15,7 @@ void forageForResources() {
     displayDialogue("You and Eurydice head into the woods to gather supplies.\n");
     displayDialogue("Time is limited. You have 3 chances to gather food or firewood.\n");
 
-    for (int turn = 1; turn <= 3; ++turn) {
+    for (int turn = 1; turn <= 4; ++turn) {
         int choice = 0;
         bool valid = false;
 
