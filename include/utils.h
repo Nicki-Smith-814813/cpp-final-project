@@ -1,7 +1,10 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <string>
+#include <iostream>         // for std::cout and std::cin
+#include <string>           // for std::string
+#include <limits>           // for std::numeric_limits
+#include <algorithm>        // for std::max, std::min
 
 enum class Speaker {
     Narrator,
