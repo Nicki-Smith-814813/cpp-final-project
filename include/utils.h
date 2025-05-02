@@ -31,23 +31,31 @@ bool loadGame(Character& player, const std::string& filename);
 void autosave(const Character& player);
 
 // Reusable templated input function
+#include <iostream>
+#include <limits>
+using namespace std;
+
 template <typename T>
-T getValidatedInput(const string& prompt, T min = std::numeric_limits<T>::min(), T max = std::numeric_limits<T>::max()) {
+T getValidatedInput(const string& prompt, T min = numeric_limits<T>::min(), T max = numeric_limits<T>::max()) {
     T input;
-    bool valid = false;
-    while (!valid) {
+    while (true) {
         cout << prompt;
-        cin >> input;
-        if (cin.fail() || input < min || input > max) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input. Try again.\n";
+        if (cin >> input) {
+            if (input >= min && input <= max) {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear leftover newline
+                return input;
+            } else {
+                cout << "Please choose a valid option (" << min << "-" << max << ").\n";
+            }
         } else {
-            valid = true;
+            cin.clear(); // clear error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // flush invalid input
+            cout << "Invalid input. Try again.\n";
         }
     }
-    return input;
 }
+
+
 
 
 void clearScreen();

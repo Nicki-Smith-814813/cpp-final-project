@@ -9,21 +9,22 @@ using namespace std;
 void scene_01_chantI(Character& player) {
     displayDialogue("The journey begins... Orpheus, your music has the power to heal, but does it have the power to save?\n");
     displayDialogue("You see Eurydice across the distance, her figure shimmering with uncertainty. But in her eyes, there is hope—a fragile hope.\n");
-    displaySpeakerDialogue("Orpheus","'Eurydice... I'm coming for you,' you say, heart pounding, determined to overcome whatever stands in your way.\n");
+    displaySpeakerDialogue("Orpheus", "'Eurydice... I'm coming for you,' you say, heart pounding, determined to overcome whatever stands in your way.\n");
     displayDialogue("The road to Hadestown is long, and the Fates are watching...\n");
 
-    // Player makes a choice: Listen to Eurydice's concerns or stay focused on the song
-    int choice;
+    // Player makes a choice
     cout << "Do you want to listen to Eurydice's concerns about food and firewood?\n";
     cout << "1. Listen to her concerns.\n";
     cout << "2. Stay focused on the song.\n";
-    cout << "Enter 1 or 2: ";
-   int choice= getValidatedInput<int>("Answer: ", 1, 2);
+    int choice = getValidatedInput<int>("Answer: ", 1, 2);
 
     if (choice == 1) {
         forageForResources(); // Transition to foraging simulator
+        player.trust += 10;
+        if (player.trust > 100) player.trust = 100;
+        displaySpeakerDialogue("Eurydice", "Thank you for listening, love. I know the song matters—but so do we.");
     } else {
         displayDialogue("You remain focused on your song, determined to bring the seasons back in tune.\n");
         displayDialogue("But Eurydice seems troubled, her eyes glancing at the sparse surroundings. You feel a sense of unease...\n");
     }
-};
+}

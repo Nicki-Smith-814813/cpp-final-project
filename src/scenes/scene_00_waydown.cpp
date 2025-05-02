@@ -38,30 +38,42 @@ void talkToEurydice(Character& player) {
     displayDialogue("You approach Eurydice...");
     displaySpeakerDialogue("Narration", "Eurydice stands before you, tired but filled with unyielding faith. She listens to the Fates, but you know her better than anyone.");
     printAsciiArt("eurydice.txt");
-    cout << "Choose what to say to Eurydice:\n";
+
     for (size_t i = 0; i < choices.size(); ++i) {
         cout << i + 1 << ". " << choices[i] << endl;
     }
 
-    int choice = 0;
-    while (true) {
-        int answer = getValidatedInput<int>("Answer: ", 1, 3);
-        if (choice >= 1 && choice <= 3) break;
-        else cout << "Please choose a valid option (1-3): ";
-    }
+    int choice = getValidatedInput<int>("Answer: ", 1, 3);
 
     switch (choice) {
         case 1:
             displaySpeakerDialogue("Orpheus", "Hadestown is a graveyard, Eurydice. It may glitter with gold, but it will take everything from you.");
             player.faith += 2;
+            player.trust += 2;
             break;
         case 2:
             displaySpeakerDialogue("Orpheus", "The Fates speak truth, Eurydice. Maybe you should listen to them.");
-            player.trust += 1;
+            player.trust -= 1;
             break;
         case 3:
             displayDialogue("You remain silent. Eurydice sighs and looks away.");
+            player.trust -= 2;
             break;
+    }
+
+    // Clamp trust
+    player.trust = max(0, min(100, player.trust));
+
+    // Branching outcome based on trust
+    if (player.trust <= 2) {
+        displaySpeakerDialogue("Eurydice", "You don’t understand. You never did.");
+        displayDialogue("She turns away, and walks down a path you cannot follow.");
+    } else if (player.trust <= 5) {
+        displaySpeakerDialogue("Eurydice", "I want to believe you. But... I don’t know if I can.");
+        displayDialogue("She lingers, uncertain. The Fates whisper louder now.");
+    } else {
+        displaySpeakerDialogue("Eurydice", "I trust you, Orpheus. Lead the way.");
+        displayDialogue("She steps beside you. Whatever lies ahead, she will face it with you.");
     }
 }
 
