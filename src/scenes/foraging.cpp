@@ -1,10 +1,13 @@
 #include "scenes/foraging.h"
 #include "utils.h"
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
 #include <limits>
+#include <iostream>     // for cout
+#include <cstdlib>      // for rand() and srand()
+#include <ctime>        // for time()
+#include <algorithm>    // for max(), if used
+
 using namespace std;
+
 
 void forageForResources() {
     srand(time(0)); // Seed RNG
@@ -16,29 +19,15 @@ void forageForResources() {
     displayDialogue("Time is limited. You have 3 chances to gather food or firewood.\n");
 
     for (int turn = 1; turn <= 4; ++turn) {
-        int choice = 0;
-        bool valid = false;
-
-        // Prompt player for their choice
-        while (!valid) {
-            cout << "Turn " << turn << ": What do you want to do?\n";
-            cout << "1. Gather Firewood\n";
-            cout << "2. Search for Food\n";
-            cout << "Enter your choice (1 or 2): ";
-            cin >> choice;
-
-            if (cin.fail() || (choice != 1 && choice != 2)) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                displayDialogue("Please enter 1 or 2.\n");
-            } else {
-                valid = true;
-            }
-        }
-
+        cout << "Turn " << turn << ": What do you want to do?\n";
+        cout << "1. Gather Firewood\n";
+        cout << "2. Search for Food\n";
+    
+        int choice = getValidatedInput<int>("Choose an action (1-2): ", 1, 2);
+    
         // Determine success (70% chance)
         bool success = (rand() % 100) < 70;
-
+    
         if (choice == 1) {
             if (success) {
                 woodGathered++;

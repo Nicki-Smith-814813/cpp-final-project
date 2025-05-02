@@ -18,7 +18,7 @@ void scene_01_chantI(Character& player) {
     cout << "1. Listen to her concerns.\n";
     cout << "2. Stay focused on the song.\n";
     cout << "Enter 1 or 2: ";
-    cin >> choice;
+   int choice= getValidatedInput<int>("Answer: ", 1, 2);
 
     if (choice == 1) {
         forageForResources(); // Transition to foraging simulator

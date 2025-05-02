@@ -1,8 +1,10 @@
 #include "utils.h"
 #include "characters.h"
 #include "scenes/scene_00_waydown.h"
+#include <vector>     
+#include <cstddef>  
 #include <iostream>
-#include <vector>
+#include <string>
 using namespace std;
 
 // Forward declare helpers
@@ -43,7 +45,7 @@ void talkToEurydice(Character& player) {
 
     int choice = 0;
     while (true) {
-        cin >> choice;
+        int answer = getValidatedInput<int>("Answer: ", 1, 3);
         if (choice >= 1 && choice <= 3) break;
         else cout << "Please choose a valid option (1-3): ";
     }

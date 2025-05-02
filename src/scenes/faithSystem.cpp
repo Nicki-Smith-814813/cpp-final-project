@@ -27,7 +27,6 @@ struct MythQuestion {
 };
 
 void mythQuestions(Character& player) {
-    srand(time(0)); // Seed random
 
     printAsciiArt("fates.txt");
 
@@ -74,10 +73,9 @@ void mythQuestions(Character& player) {
         }
 
         int answer;
-        cout << "Enter your answer (1, 2, or 3): ";
-        cin >> answer;
-
+        answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
         int selectedIndex = shuffled[answer - 1].first;
+        
         if (selectedIndex == q.correctIndex) {
             displaySpeakerDialogue("Fates", "Correct.");
             correctAnswers++;
@@ -119,7 +117,6 @@ void mythQuestions(Character& player) {
 
 // Function to simulate the hades says challenge
 bool hadesSaysChallenge(Character& player) {
-    srand(time(0));
 
     vector<string> rawCommands = {
         "Stomp", "Bow", "Raise your hands", "Spin", "Touch your toes"
@@ -149,7 +146,6 @@ bool hadesSaysChallenge(Character& player) {
     displayDialogue("(Type your responses exactly: example -> Bow)\n");
 
     int score = 0;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear input buffer
 
     for (int i = 0; i < 5; ++i) {
         cout << "Command #" << (i + 1) << ": ";
@@ -242,14 +238,15 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel)
     cout << "\n\n";
 
     // IMPORTANT: clear input buffer
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     // Player must repeat the melody
     cout << "Enter the melody sequence (type: Do, Re, Mi, Fa, So, La, Ti):\n";
     for (int i = 0; i < melodyLength; ++i) {
-        cin >> playerInput;
-        if (playerInput == melody[i]) {
+        for (int j = 0; j < numNotes; ++j)
+            cout << j+1 << ". " << notes[j] << "\n";
+        int inputIndex = getValidatedInput<int>("Pick the note (1-7): ", 1, 7);
+        string playerNote = notes[inputIndex - 1];
+        if (playerNote == melody[i]) {
             score++;
         } else {
             displaySpeakerDialogue("Fates", "*You falter... the thread snaps.*");
@@ -301,7 +298,6 @@ void randomizedFatesTaunt(const Character& player)
 
 // Function to ask faith-related questions and impact the player's faith level
 void askFaithQuestions(Character& player) {
-    srand(time(0)); // Random seed
 
     vector<pair<string, int>> questions = {
         {"Who was cursed to push a boulder uphill for eternity?\n1. Sisyphus\n2. Tantalus\n3. Icarus\n", 1},
@@ -314,25 +310,11 @@ void askFaithQuestions(Character& player) {
     for (int i = 0; i < 2; ++i) {
         int index = rand() % questions.size();
         auto question = questions[index];
-        questions.erase(questions.begin() + index); // Remove it so it can't repeat
+        questions.erase(questions.begin() + index);
     
         int answer;
-        bool valid = false;
-    
-        while (!valid) {
-            displaySpeakerDialogue("Fates", question.first);
-            cout << "Enter your answer (1, 2, or 3): ";
-    
-            cin >> answer;
-    
-            if (cin.fail() || answer < 1 || answer > 3) {
-                cin.clear(); // clear error state
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // flush bad input
-                displaySpeakerDialogue("Fates", "Tsk. We said *1, 2, or 3*, songbird.");
-            } else {
-                valid = true;
-            }
-        }
+        displaySpeakerDialogue("Fates", question.first);
+        answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
     
         if (answer == question.second) {
             displaySpeakerDialogue("Fates", "Maybe you know a thing or two...");
@@ -344,5 +326,4 @@ void askFaithQuestions(Character& player) {
             if (player.faith < 0.0f) player.faith = 0.0f;
         }
     }
-    
-}
+}    

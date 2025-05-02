@@ -130,20 +130,6 @@ void autosave(const Character& player) {
 }
 
 
-int getValidatedInput(int min, int max) {
-    int choice;
-    while (true) {
-        std::cout << "Enter choice (" << min << "-" << max << "): ";
-        std::cin >> choice;
-        if (std::cin.fail() || choice < min || choice > max) {
-            std::cout << "Invalid input. Try again.\n";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        } else {
-            return choice;
-        }
-    }
-}
 
 #define RESET   "\033[0m"
 #define RED     "\033[41m"
