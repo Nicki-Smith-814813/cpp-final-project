@@ -9,6 +9,7 @@ using namespace std;
 
 // Forward declare helpers
 void hermesNarration();
+void theFatesGlitteringPromises();
 void talkToEurydice(Character& player);
 void persephoneAndHadesConflict();
 
