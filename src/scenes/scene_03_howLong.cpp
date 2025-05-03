@@ -4,7 +4,7 @@
 
 
 
-void scene_03_howLong(Character& player) {
+void scene_03_howLong() {
 
     printAsciiArt("wine.txt");
     

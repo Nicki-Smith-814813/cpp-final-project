@@ -72,8 +72,7 @@ void Game::start() {
     scene_02_waitForMe(player);
     AUTO_SAVE(player);
 
-    scene_03_howLong(player);
-    AUTO_SAVE(player);
+    scene_03_howLong();
 
     scene_04_chantII(player);
     AUTO_SAVE(player);

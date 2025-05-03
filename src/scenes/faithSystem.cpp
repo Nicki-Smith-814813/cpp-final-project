@@ -72,10 +72,10 @@ void mythQuestions(Character& player) {
         random_shuffle(shuffled.begin(), shuffled.end());
 
         cout << "\n" << q.question << "\n";
-        for (int k = 0; k < shuffled.size(); ++k) {
+        for (size_t k = 0; k < shuffled.size(); ++k) {
             cout << (k + 1) << ". " << shuffled[k].second << "\n";
         }
-
+        
         int answer;
         answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
         int selectedIndex = shuffled[answer - 1].first;
