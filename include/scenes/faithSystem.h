@@ -10,6 +10,12 @@ void increaseFaith(Character& player, float amount);
 void decreaseFaith(Character& player, float amount);
 
 // Mythology quiz function
+struct MythQuestion {
+    std::string question;
+    std::vector<std::string> options;
+    int correctIndex;
+};
+
 void mythQuestions(Character& player);
 
 //Memory challenge

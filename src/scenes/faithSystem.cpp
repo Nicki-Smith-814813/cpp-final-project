@@ -23,105 +23,160 @@ void decreaseFaith(Character& player, float amount) {
     if (player.faith < 0.0f) player.faith = 0.0f;
 }
 
-struct MythQuestion {
-    string question;
-    vector<string> options;
-    int correctIndex;
-};
-
 void mythQuestions(Character& player) {
-
     printAsciiArt("fates.txt");
-    randomizedFatesTaunt(player); 
 
-    vector<MythQuestion> questions = {
-        {"Who was the hero that completed the Twelve Labors?", {"Perseus", "Heracles", "Theseus"}, 1},
-        {"Who turned into a spider after being defeated by Athena?", {"Medusa", "Arachne", "Hera"}, 1},
-        {"Who was cursed to turn everything they touched into gold?", {"Midas", "King Minos", "Persephone"}, 0},
-        {"Who ferries souls across the River Styx?", {"Charon", "Hades", "Hermes"}, 0},
-        {"Which goddess is associated with the hearth and home?", {"Athena", "Artemis", "Hestia"}, 2},
-        {"Who is the goddess of love and beauty?", {"Aphrodite", "Hera", "Demeter"}, 0},
-        {"Who flew too close to the sun?", {"Daedalus", "Icarus", "Perseus"}, 1},
-        {"Who opened Pandora’s Box?", {"Hera", "Athena", "Pandora"}, 2},
-        {"Who is the Greek god of war?", {"Apollo", "Ares", "Hephaestus"}, 1},
-        {"Who is the ruler of the Underworld?", {"Poseidon", "Zeus", "Hades"}, 2},
-        {"Which god is known for his winged sandals?", {"Hermes", "Dionysus", "Ares"}, 0},
-        {"Who is the goddess of wisdom?", {"Hera", "Athena", "Hestia"}, 1},
-        {"Who tamed Pegasus?", {"Perseus", "Bellerophon", "Achilles"}, 1},
-        {"Who killed the Minotaur?", {"Theseus", "Heracles", "Jason"}, 0},
-        {"Who stole fire from the gods?", {"Prometheus", "Epimetheus", "Hermes"}, 0},
-        {"Who is the goddess of the hunt?", {"Artemis", "Athena", "Demeter"}, 0},
-        {"Who judged the beauty contest between Hera, Athena, and Aphrodite?", {"Paris", "Achilles", "Odysseus"}, 0},
-        {"Who was punished by having to roll a boulder uphill forever?", {"Tantalus", "Sisyphus", "Orpheus"}, 1},
-        {"Who led the Argonauts?", {"Odysseus", "Theseus", "Jason"}, 2},
-        {"Who is the Greek goddess of agriculture?", {"Hera", "Demeter", "Persephone"}, 1}
+    vector<MythQuestion> easyQuestions = {
+        {"Who is the king of the gods?", {"Zeus", "Poseidon", "Hades"}, 0},
+        {"Who is the goddess of love?", {"Aphrodite", "Hera", "Athena"}, 0},
+        {"What is the name of the winged horse?", {"Pegasus", "Hydra", "Cerberus"}, 0},
+        {"Who has a lightning bolt?", {"Zeus", "Apollo", "Hermes"}, 0},
+        {"Who is Hades' wife?", {"Persephone", "Hera", "Athena"}, 0},
+        {"What is the underworld river of forgetfulness?", {"Lethe", "Styx", "Acheron"}, 0},
+        {"Who opened Pandora's box?", {"Pandora", "Medusa", "Artemis"}, 0},
+        {"Who was the god of war?", {"Ares", "Apollo", "Hermes"}, 0},
+        {"Which god ruled the sea?", {"Poseidon", "Zeus", "Hephaestus"}, 0},
+        {"What creature had snakes for hair?", {"Medusa", "Hydra", "Chimera"}, 0},
+        {"What was Medusa turned into?", {"Gorgon", "Siren", "Harpy"}, 0},
+        {"Who is the messenger god?", {"Hermes", "Apollo", "Ares"}, 0},
+        {"Who is the sun god?", {"Apollo", "Helios", "Zeus"}, 0},
+        {"Which god is associated with wine?", {"Dionysus", "Hermes", "Ares"}, 0},
+        {"Who was the goddess of the hunt?", {"Artemis", "Athena", "Hera"}, 0},
+        {"Which goddess was born from sea foam?", {"Aphrodite", "Athena", "Demeter"}, 0},
+        {"Who built the labyrinth?", {"Daedalus", "Minos", "Icarus"}, 0},
+        {"Who flew too close to the sun?", {"Icarus", "Perseus", "Achilles"}, 0},
+        {"Which hero used a lyre?", {"Orpheus", "Heracles", "Theseus"}, 0},
+        {"What is Mount Olympus?", {"Home of the gods", "Underworld", "Battlefield"}, 0}
+    };
+    
+    vector<MythQuestion> mediumQuestions = {
+        {"Who is the goddess of wisdom?", {"Athena", "Artemis", "Hera"}, 0},
+        {"Who killed the Minotaur?", {"Theseus", "Heracles", "Perseus"}, 0},
+        {"Which hero slew Medusa?", {"Perseus", "Theseus", "Achilles"}, 0},
+        {"Who was chained to a rock for stealing fire?", {"Prometheus", "Sisyphus", "Atlas"}, 0},
+        {"Which hero completed twelve labors?", {"Heracles", "Theseus", "Jason"}, 0},
+        {"Who was punished by rolling a boulder uphill?", {"Sisyphus", "Tantalus", "Prometheus"}, 0},
+        {"Who was cursed to turn everything to gold?", {"Midas", "Minos", "Orpheus"}, 0},
+        {"Who ferried souls across the Styx?", {"Charon", "Hades", "Hermes"}, 0},
+        {"Who is the mother of Persephone?", {"Demeter", "Hera", "Aphrodite"}, 0},
+        {"Who did Paris choose as the fairest?", {"Aphrodite", "Athena", "Hera"}, 0},
+        {"Which god forged weapons?", {"Hephaestus", "Ares", "Hermes"}, 0},
+        {"Who was turned into a spider?", {"Arachne", "Medusa", "Hera"}, 0},
+        {"Which hero led the Argonauts?", {"Jason", "Perseus", "Odysseus"}, 0},
+        {"Who solved the Sphinx's riddle?", {"Oedipus", "Orpheus", "Theseus"}, 0},
+        {"Who was the wife of Odysseus?", {"Penelope", "Helen", "Andromache"}, 0},
+        {"Who gave fire to mankind?", {"Prometheus", "Epimetheus", "Hermes"}, 0},
+        {"Which monster had multiple heads?", {"Hydra", "Cerberus", "Chimera"}, 0},
+        {"Who turned into a laurel tree?", {"Daphne", "Calliope", "Andromeda"}, 0},
+        {"What guarded the Underworld?", {"Cerberus", "Hydra", "Chimera"}, 0},
+        {"Which hero had a weak heel?", {"Achilles", "Odysseus", "Perseus"}, 0}
+    };
+    
+    vector<MythQuestion> hardQuestions = {
+        {"Who was cursed to eternal thirst?", {"Tantalus", "Sisyphus", "Prometheus"}, 0},
+        {"Which god carried the heavens?", {"Atlas", "Cronus", "Hyperion"}, 0},
+        {"Who turned Actaeon into a stag?", {"Artemis", "Hera", "Athena"}, 0},
+        {"Which muse inspired epic poetry?", {"Calliope", "Clio", "Erato"}, 0},
+        {"Who is the goddess of retribution?", {"Nemesis", "Nike", "Nyx"}, 0},
+        {"Which Titan ruled during the Golden Age?", {"Cronus", "Oceanus", "Hyperion"}, 0},
+        {"What creature is part lion, goat, and snake?", {"Chimera", "Cerberus", "Sphinx"}, 0},
+        {"What did Persephone eat in the Underworld?", {"Pomegranate seeds", "Olives", "Grapes"}, 0},
+        {"Who is the personification of night?", {"Nyx", "Selene", "Eos"}, 0},
+        {"What did Orpheus use to charm Hades?", {"Lyre", "Flute", "Panpipes"}, 0},
+        {"Who was the father of the Minotaur?", {"Minos", "Poseidon", "Zeus"}, 0},
+        {"What caused Narcissus' death?", {"His reflection", "A curse", "Hera"}, 0},
+        {"Which god is twin to Artemis?", {"Apollo", "Ares", "Hermes"}, 0},
+        {"What is the name of Hades' helm?", {"Helm of Darkness", "Aegis", "Cap of Invisibility"}, 0},
+        {"Which creature is a winged lion with a human face?", {"Sphinx", "Chimera", "Griffin"}, 0},
+        {"Who was the mother of Dionysus?", {"Semele", "Rhea", "Leto"}, 0},
+        {"Which river must souls cross?", {"Styx", "Lethe", "Phlegethon"}, 0},
+        {"Who was punished by having his liver eaten daily?", {"Prometheus", "Tantalus", "Sisyphus"}, 0},
+        {"What creature lured sailors with song?", {"Sirens", "Harpies", "Nymphs"}, 0},
+        {"What guards the Golden Fleece?", {"Dragon", "Hydra", "Giant"}, 0}
+    };
+    
+    struct QuizLevel {
+        string name;
+        int questionCount;
+        int faithReward;
+        int faithPenalty;
+        int trustReward;
+        int trustPenalty;
     };
 
-    random_shuffle(questions.begin(), questions.end());
+    vector<QuizLevel> levels = {
+        {"easy", 5, 3, 2, 5, 2},     // +3 faith, -2 faith | +5 trust, -2 trust
+        {"medium", 10, 5, 6, 5, 3},   // +10 faith, -5 faith | +6 trust, -3 trust
+        {"hard", 15, 8, 5, 5, 3}     // +7 faith, -10 faith | +5 trust, -3 trust
+    };
+    
 
-    int correctAnswers = 0;
+    for (const QuizLevel& level : levels) {
+        displaySpeakerDialogue("Fates", "Fates:'*Let us test the thread, " + level.name + " first...*'");
+        randomizedFatesTaunt(player);
+    
+        vector<MythQuestion>* selectedSet;
+    
+        if (level.name == "easy") selectedSet = &easyQuestions;
+        else if (level.name == "medium") selectedSet = &mediumQuestions;
+        else selectedSet = &hardQuestions;
+    
+        random_shuffle(selectedSet->begin(), selectedSet->end());
+        vector<MythQuestion> questions(selectedSet->begin(), selectedSet->begin() + level.questionCount);
+    
 
-    for (int i = 0; i < 5; ++i) {
-        MythQuestion& q = questions[i];
+        int correctAnswers = 0;
 
-        // Shuffle options
-        vector<pair<int, string>> shuffled;
-        for (int j = 0; j < 3; ++j) {
-            shuffled.push_back({j, q.options[j]});
+        for (const MythQuestion& q : questions) {
+            vector<pair<int, string>> shuffled;
+            for (int j = 0; j < 3; ++j) {
+                shuffled.push_back({j, q.options[j]});
+            }
+            random_shuffle(shuffled.begin(), shuffled.end());
+
+            cout << "\n" << q.question << "\n";
+            for (int i = 0; i < 3; ++i) {
+                cout << (i + 1) << ". " << shuffled[i].second << "\n";
+            }
+
+            int answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
+            int selectedIndex = shuffled[answer - 1].first;
+
+            if (selectedIndex == q.correctIndex) {
+                displaySpeakerDialogue("Fates", "*Hmm. Correct. For now.*");
+                player.faith += level.faithReward;
+                player.trust += level.trustReward;
+
+                if (rand() % 2 == 0) randomizedFatesTaunt(player);
+                correctAnswers++;
+            } else {
+                displaySpeakerDialogue("Fates", "*Wrong. Your thread frays.*");
+                player.faith -= level.faithPenalty;
+                player.trust -= level.trustPenalty;
+
+                randomizedFatesTaunt(player);
+            }
+            //Clamps for faith and trust
+            player.faith = max(0, min(100, player.faith));
+            player.trust = max(0, min(100, player.trust));
+
         }
-        random_shuffle(shuffled.begin(), shuffled.end());
 
-        cout << "\n" << q.question << "\n";
-        for (size_t k = 0; k < shuffled.size(); ++k) {
-            cout << (k + 1) << ". " << shuffled[k].second << "\n";
-        }
-        
-        int answer;
-        answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
-        int selectedIndex = shuffled[answer - 1].first;
-        
-        if (selectedIndex == q.correctIndex) {
-            displaySpeakerDialogue("Fates", "*A rare spark. Don’t lose it.*");
-            player.faith += 5;
-            if (rand() % 2 == 0) randomizedFatesTaunt(player);  // optional extra taunt
-            correctAnswers++;
+        // Level summary
+        if (correctAnswers == level.questionCount) {
+            displaySpeakerDialogue("Fates", "Fates:'*Hmph. Perhaps you *do* know something.*'");
+        } else if (correctAnswers >= level.questionCount / 2) {
+            displaySpeakerDialogue("Fates", "Fates:'*Barely good enough.*'");
         } else {
-            displaySpeakerDialogue("Fates", "*Wrong again. Your thread weakens.*");
-            player.faith -= 5;
-            randomizedFatesTaunt(player);
+            displaySpeakerDialogue("Fates", "Fates:'*Pitiful. Tattered and threadbare.*'");
         }
-        
 
-        player.faith = max(0, min(100, player.faith));
+        cout << "Faith: " << player.faith << "%\n\n";
     }
 
-    // Final response
-    if (correctAnswers == 5) {
-        printAsciiArt("threads_glow.txt");
-        displaySpeakerDialogue("Fates", "Fates:'Hmph... Impressive. Even we didn't expect such clarity from a mortal mind.'");
-        displayDialogue("Their threads shimmer like constellations. Perhaps... fate bends.");
-    } else if (correctAnswers >= 3) {
-        displaySpeakerDialogue("Fates", "Fates:'You've done... acceptably.'");
-        displayDialogue("They nod with cold amusement.");
-        displaySpeakerDialogue("Fates","Fates:'The thread trembles, but does not yet snap.'");
-    } else if (correctAnswers == 2) {
-        dramaticPause(800);
-        displayDialogue("\033[38;2;50;50;150mThe air grows heavy.\033[0m");
-        displaySpeakerDialogue("Fates", "Fates:'Tch. That barely scratches the surface of truth.'");
-        displayDialogue("They twist their thread tighter.");
-        displaySpeakerDialogue("Fates","Fates:'We wonder... why you still try.'");
-    } else {
-        printAsciiArt("fates_snarl.txt");
-        dramaticPause(1000);
-        displayDialogue("\033[38;2;30;30;100mA chill grips your spine.\033[0m");
-        displaySpeakerDialogue("Fates", "Fates:'Pitiful.'");
-        displayDialogue("Their thread coils like a noose.");
-        displaySpeakerDialogue("Fates","Fates:'You know nothing of fate, songbird.'");
-        displayDialogue("They laugh — shrill and final.");
-    }
-
-    cout << "Your current faith level: " << player.faith << "%\n";
+    displayDialogue("The Fates fall silent... for now.");
 }
+
 
     
 
@@ -172,15 +227,15 @@ bool hadesSaysChallenge(Character& player) {
 
     // Adjust stats based on performance
     if (score == 5) {
-        displaySpeakerDialogue("Hades", "Impressive. Maybe there's hope for you yet.");
+        displaySpeakerDialogue("Hades","Hades:'Impressive. Maybe there's hope for you yet.'");
         player.faith += 10;
         player.trust += 10;
     } else if (score >= 3) {
-        displaySpeakerDialogue("Hades", "You’re not entirely hopeless.");
+        displaySpeakerDialogue("Hades","Hades:'You’re not entirely hopeless.'");
         player.faith += 5;
         player.trust += 5;
     } else {
-        displaySpeakerDialogue("Hades", "Pathetic. Try harder next time.");
+        displaySpeakerDialogue("Hades","Hades:'Pathetic. Try harder next time.'");
         player.faith -= 5;
         player.trust -= 5;
     }
@@ -195,12 +250,12 @@ bool hadesSaysChallenge(Character& player) {
 }
 
 
-//Musical challenge
+// Musical challenge
 bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
     if (isRetry) {
-        displaySpeakerDialogue("Hades", "You dare try again, boy? The melody grows longer...");
+        displaySpeakerDialogue("Hades", "Hades:'You dare try again, boy? The melody grows longer...'");
     } else {
-        displaySpeakerDialogue("Hades", "Let's see if you can truly sing your way out of this place.");
+        displaySpeakerDialogue("Hades", "Hades:'Let's see if you can truly sing your way out of this place.'");
     }
 
     int flashDelay = 600;
@@ -212,10 +267,10 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
         melodyLength = 5;
     } else if (difficultyLevel == 2) {
         melodyLength = 7;
-        displaySpeakerDialogue("Fates", "*The melody grows longer... the threads twist tighter...*");
+        displaySpeakerDialogue("Fates", "Fates:'*The melody grows longer... the threads twist tighter...*'");
     } else {
         melodyLength = 10;
-        displaySpeakerDialogue("Fates", "*The melody is endless, boy... Can you even hear it anymore?*");
+        displaySpeakerDialogue("Fates", "Fates:'*The melody is endless, boy... Can you even hear it anymore?*'");
     }
 
     string notes[] = {"Do", "Re", "Mi", "Fa", "So", "La", "Ti"};
@@ -224,10 +279,9 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
 
     displayDialogue("Hades leans back, watching Orpheus with an iron gaze...");
     randomizedFatesTaunt(player);
-    displaySpeakerDialogue("Hades", "Here’s the melody. Listen carefully.\n");
+    displaySpeakerDialogue("Hades", "Hades:'Here’s the melody. Listen carefully.'");
     dramaticPause(startDelay);
 
-    // Generate random melody
     for (int i = 0; i < melodyLength; ++i) {
         int noteIndex = rand() % numNotes;
         melody.push_back(noteIndex + 1);
@@ -244,18 +298,16 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
         cout << "\n\n";
     };
 
-    // First playback
     playMelody();
 
     int replay = getValidatedInput<int>("Do you want to hear the melody again? (1 = Yes, 2 = No): ", 1, 2);
     if (replay == 1) {
-        displaySpeakerDialogue("Fates", "*Listen once more...*");
+        displaySpeakerDialogue("Fates", "Fates:'*Listen once more...*'");
         dramaticPause(500);
         playMelody();
-        randomizedFatesTaunt(player); // second taunt before input
+        randomizedFatesTaunt(player);
     }
 
-    // Player input
     cout << "Enter the melody using numbers (1=Do,2=Re,3=Mi,4=Fa,5=So,6=La,7=Ti), separated by spaces:\n> ";
     string inputLine;
     getline(cin >> ws, inputLine);
@@ -268,26 +320,24 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
         if (n >= 1 && n <= 7) {
             playerSequence.push_back(n);
         } else {
-            displaySpeakerDialogue("Fates", "*You played a forbidden note...*");
+            displaySpeakerDialogue("Fates", "Fates:'*You played a forbidden note...*'");
             player.faith -= 5;
             player.trust -= 3;
-            if (player.faith < 0) player.faith = 0;
-            if (player.trust < 0) player.trust = 0;
+            player.faith = max(0, player.faith);
+            player.trust = max(0, player.trust);
             return false;
         }
     }
 
-    // Validate input length
-    if (playerSequence.size() != melodyLength) {
-        displaySpeakerDialogue("Fates", "*The sequence is the wrong length. Are you guessing?*");
+    if (playerSequence.size() != static_cast<size_t>(melodyLength)) {
+        displaySpeakerDialogue("Fates", "Fates:'*The sequence is the wrong length. Are you guessing?*'");
         player.faith -= 5;
         player.trust -= 3;
-        if (player.faith < 0) player.faith = 0;
-        if (player.trust < 0) player.trust = 0;
+        player.faith = max(0, player.faith);
+        player.trust = max(0, player.trust);
         return false;
     }
 
-    // Score accuracy
     int correct = 0;
     for (int i = 0; i < melodyLength; ++i) {
         if (playerSequence[i] == melody[i]) {
@@ -297,30 +347,29 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
 
     int mistakes = melodyLength - correct;
 
-    // Stat application and outcome
     if (mistakes == 0) {
-        displaySpeakerDialogue("Hades", "Impressive. Your memory serves you well.");
+        displaySpeakerDialogue("Hades", "Hades:'Impressive. Your memory serves you well.'");
         player.faith += 10;
         player.trust += 10;
-        if (player.faith > 100) player.faith = 100;
-        if (player.trust > 100) player.trust = 100;
-        return true;
     } else if (mistakes <= 2) {
-        displaySpeakerDialogue("Fates", "*Close enough... the thread trembles but does not break.*");
+        displaySpeakerDialogue("Fates", "Fates:'*Close enough... the thread trembles but does not break.*'");
         player.faith += 5;
         player.trust += 5;
-        if (player.faith > 100) player.faith = 100;
-        if (player.trust > 100) player.trust = 100;
-        return true;
     } else {
-        displaySpeakerDialogue("Fates", "*You falter... the thread snaps.*");
+        displaySpeakerDialogue("Fates", "Fates:'*You falter... the thread snaps.*'");
         player.faith -= 10;
         player.trust -= 5;
-        if (player.faith < 0) player.faith = 0;
-        if (player.trust < 0) player.trust = 0;
+        player.faith = max(0, player.faith);
+        player.trust = max(0, player.trust);
         return false;
     }
-        cout << "Your current faith level: " << player.faith << "%";}
+
+    player.faith = min(100, player.faith);
+    player.trust = min(100, player.trust);
+
+    cout << "Your current faith level: " << player.faith << "%\n";
+    return true;
+}
 
 
 // --------------------------------
@@ -420,10 +469,10 @@ void askFaithQuestions(Character& player) {
 
         int answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
         if (answer - 1 == q.correctIndex) {
-            displaySpeakerDialogue("Fates", "Maybe you know a thing or two...");
+            displaySpeakerDialogue("Fates", "Fates:'Maybe you know a thing or two...'");
             player.faith += 5;
         } else {
-            displaySpeakerDialogue("Fates", "Didn't think so. Little songbird lost.");
+            displaySpeakerDialogue("Fates", "Fates:'Didn't think so. Little songbird lost.'");
             player.faith -= 5;
         }
 
