@@ -26,157 +26,176 @@ void decreaseFaith(Character& player, float amount) {
 void mythQuestions(Character& player) {
     printAsciiArt("fates.txt");
 
-    vector<MythQuestion> easyQuestions = {
-        {"Who is the king of the gods?", {"Zeus", "Poseidon", "Hades"}, 0},
-        {"Who is the goddess of love?", {"Aphrodite", "Hera", "Athena"}, 0},
-        {"What is the name of the winged horse?", {"Pegasus", "Hydra", "Cerberus"}, 0},
-        {"Who has a lightning bolt?", {"Zeus", "Apollo", "Hermes"}, 0},
-        {"Who is Hades' wife?", {"Persephone", "Hera", "Athena"}, 0},
-        {"What is the underworld river of forgetfulness?", {"Lethe", "Styx", "Acheron"}, 0},
-        {"Who opened Pandora's box?", {"Pandora", "Medusa", "Artemis"}, 0},
-        {"Who was the god of war?", {"Ares", "Apollo", "Hermes"}, 0},
-        {"Which god ruled the sea?", {"Poseidon", "Zeus", "Hephaestus"}, 0},
-        {"What creature had snakes for hair?", {"Medusa", "Hydra", "Chimera"}, 0},
-        {"What was Medusa turned into?", {"Gorgon", "Siren", "Harpy"}, 0},
-        {"Who is the messenger god?", {"Hermes", "Apollo", "Ares"}, 0},
-        {"Who is the sun god?", {"Apollo", "Helios", "Zeus"}, 0},
-        {"Which god is associated with wine?", {"Dionysus", "Hermes", "Ares"}, 0},
-        {"Who was the goddess of the hunt?", {"Artemis", "Athena", "Hera"}, 0},
-        {"Which goddess was born from sea foam?", {"Aphrodite", "Athena", "Demeter"}, 0},
-        {"Who built the labyrinth?", {"Daedalus", "Minos", "Icarus"}, 0},
-        {"Who flew too close to the sun?", {"Icarus", "Perseus", "Achilles"}, 0},
-        {"Which hero used a lyre?", {"Orpheus", "Heracles", "Theseus"}, 0},
-        {"What is Mount Olympus?", {"Home of the gods", "Underworld", "Battlefield"}, 0}
-    };
+         static vector<MythQuestion> easyQuestions = {
+            {"Who is the king of the gods?", {"Zeus", "Poseidon", "Hades"}, 0},
+            {"Who is the goddess of love?", {"Aphrodite", "Hera", "Athena"}, 0},
+            {"What is the name of the winged horse?", {"Pegasus", "Hydra", "Cerberus"}, 0},
+            {"Who has a lightning bolt?", {"Zeus", "Apollo", "Hermes"}, 0},
+            {"Who is Hades' wife?", {"Persephone", "Hera", "Athena"}, 0},
+            {"What is the underworld river of forgetfulness?", {"Lethe", "Styx", "Acheron"}, 0},
+            {"Who opened Pandora's box?", {"Pandora", "Medusa", "Artemis"}, 0},
+            {"Who was the god of war?", {"Ares", "Apollo", "Hermes"}, 0},
+            {"Which god ruled the sea?", {"Poseidon", "Zeus", "Hephaestus"}, 0},
+            {"What creature had snakes for hair?", {"Medusa", "Hydra", "Chimera"}, 0},
+            {"What was Medusa turned into?", {"Gorgon", "Siren", "Harpy"}, 0},
+            {"Who is the messenger god?", {"Hermes", "Apollo", "Ares"}, 0},
+            {"Who is the sun god?", {"Apollo", "Helios", "Zeus"}, 0},
+            {"Which god is associated with wine?", {"Dionysus", "Hermes", "Ares"}, 0},
+            {"Who was the goddess of the hunt?", {"Artemis", "Athena", "Hera"}, 0},
+            {"Which goddess was born from sea foam?", {"Aphrodite", "Athena", "Demeter"}, 0},
+            {"Who built the labyrinth?", {"Daedalus", "Minos", "Icarus"}, 0},
+            {"Who flew too close to the sun?", {"Icarus", "Perseus", "Achilles"}, 0},
+            {"Which hero used a lyre?", {"Orpheus", "Heracles", "Theseus"}, 0},
+            {"What is Mount Olympus?", {"Home of the gods", "Underworld", "Battlefield"}, 0}
+        };
     
-    vector<MythQuestion> mediumQuestions = {
-        {"Who is the goddess of wisdom?", {"Athena", "Artemis", "Hera"}, 0},
-        {"Who killed the Minotaur?", {"Theseus", "Heracles", "Perseus"}, 0},
-        {"Which hero slew Medusa?", {"Perseus", "Theseus", "Achilles"}, 0},
-        {"Who was chained to a rock for stealing fire?", {"Prometheus", "Sisyphus", "Atlas"}, 0},
-        {"Which hero completed twelve labors?", {"Heracles", "Theseus", "Jason"}, 0},
-        {"Who was punished by rolling a boulder uphill?", {"Sisyphus", "Tantalus", "Prometheus"}, 0},
-        {"Who was cursed to turn everything to gold?", {"Midas", "Minos", "Orpheus"}, 0},
-        {"Who ferried souls across the Styx?", {"Charon", "Hades", "Hermes"}, 0},
-        {"Who is the mother of Persephone?", {"Demeter", "Hera", "Aphrodite"}, 0},
-        {"Who did Paris choose as the fairest?", {"Aphrodite", "Athena", "Hera"}, 0},
-        {"Which god forged weapons?", {"Hephaestus", "Ares", "Hermes"}, 0},
-        {"Who was turned into a spider?", {"Arachne", "Medusa", "Hera"}, 0},
-        {"Which hero led the Argonauts?", {"Jason", "Perseus", "Odysseus"}, 0},
-        {"Who solved the Sphinx's riddle?", {"Oedipus", "Orpheus", "Theseus"}, 0},
-        {"Who was the wife of Odysseus?", {"Penelope", "Helen", "Andromache"}, 0},
-        {"Who gave fire to mankind?", {"Prometheus", "Epimetheus", "Hermes"}, 0},
-        {"Which monster had multiple heads?", {"Hydra", "Cerberus", "Chimera"}, 0},
-        {"Who turned into a laurel tree?", {"Daphne", "Calliope", "Andromeda"}, 0},
-        {"What guarded the Underworld?", {"Cerberus", "Hydra", "Chimera"}, 0},
-        {"Which hero had a weak heel?", {"Achilles", "Odysseus", "Perseus"}, 0}
-    };
+        static vector<MythQuestion> mediumQuestions = {
+            {"Who is the goddess of wisdom?", {"Athena", "Artemis", "Hera"}, 0},
+            {"Who killed the Minotaur?", {"Theseus", "Heracles", "Perseus"}, 0},
+            {"Which hero slew Medusa?", {"Perseus", "Theseus", "Achilles"}, 0},
+            {"Who was chained to a rock for stealing fire?", {"Prometheus", "Sisyphus", "Atlas"}, 0},
+            {"Which hero completed twelve labors?", {"Heracles", "Theseus", "Jason"}, 0},
+            {"Who was punished by rolling a boulder uphill?", {"Sisyphus", "Tantalus", "Prometheus"}, 0},
+            {"Who was cursed to turn everything to gold?", {"Midas", "Minos", "Orpheus"}, 0},
+            {"Who ferried souls across the Styx?", {"Charon", "Hades", "Hermes"}, 0},
+            {"Who is the mother of Persephone?", {"Demeter", "Hera", "Aphrodite"}, 0},
+            {"Who did Paris choose as the fairest?", {"Aphrodite", "Athena", "Hera"}, 0},
+            {"Which god forged weapons?", {"Hephaestus", "Ares", "Hermes"}, 0},
+            {"Who was turned into a spider?", {"Arachne", "Medusa", "Hera"}, 0},
+            {"Which hero led the Argonauts?", {"Jason", "Perseus", "Odysseus"}, 0},
+            {"Who solved the Sphinx's riddle?", {"Oedipus", "Orpheus", "Theseus"}, 0},
+            {"Who was the wife of Odysseus?", {"Penelope", "Helen", "Andromache"}, 0},
+            {"Who gave fire to mankind?", {"Prometheus", "Epimetheus", "Hermes"}, 0},
+            {"Which monster had multiple heads?", {"Hydra", "Cerberus", "Chimera"}, 0},
+            {"Who turned into a laurel tree?", {"Daphne", "Calliope", "Andromeda"}, 0},
+            {"What guarded the Underworld?", {"Cerberus", "Hydra", "Chimera"}, 0},
+            {"Which hero had a weak heel?", {"Achilles", "Odysseus", "Perseus"}, 0}
+        };
     
-    vector<MythQuestion> hardQuestions = {
-        {"Who was cursed to eternal thirst?", {"Tantalus", "Sisyphus", "Prometheus"}, 0},
-        {"Which god carried the heavens?", {"Atlas", "Cronus", "Hyperion"}, 0},
-        {"Who turned Actaeon into a stag?", {"Artemis", "Hera", "Athena"}, 0},
-        {"Which muse inspired epic poetry?", {"Calliope", "Clio", "Erato"}, 0},
-        {"Who is the goddess of retribution?", {"Nemesis", "Nike", "Nyx"}, 0},
-        {"Which Titan ruled during the Golden Age?", {"Cronus", "Oceanus", "Hyperion"}, 0},
-        {"What creature is part lion, goat, and snake?", {"Chimera", "Cerberus", "Sphinx"}, 0},
-        {"What did Persephone eat in the Underworld?", {"Pomegranate seeds", "Olives", "Grapes"}, 0},
-        {"Who is the personification of night?", {"Nyx", "Selene", "Eos"}, 0},
-        {"What did Orpheus use to charm Hades?", {"Lyre", "Flute", "Panpipes"}, 0},
-        {"Who was the father of the Minotaur?", {"Minos", "Poseidon", "Zeus"}, 0},
-        {"What caused Narcissus' death?", {"His reflection", "A curse", "Hera"}, 0},
-        {"Which god is twin to Artemis?", {"Apollo", "Ares", "Hermes"}, 0},
-        {"What is the name of Hades' helm?", {"Helm of Darkness", "Aegis", "Cap of Invisibility"}, 0},
-        {"Which creature is a winged lion with a human face?", {"Sphinx", "Chimera", "Griffin"}, 0},
-        {"Who was the mother of Dionysus?", {"Semele", "Rhea", "Leto"}, 0},
-        {"Which river must souls cross?", {"Styx", "Lethe", "Phlegethon"}, 0},
-        {"Who was punished by having his liver eaten daily?", {"Prometheus", "Tantalus", "Sisyphus"}, 0},
-        {"What creature lured sailors with song?", {"Sirens", "Harpies", "Nymphs"}, 0},
-        {"What guards the Golden Fleece?", {"Dragon", "Hydra", "Giant"}, 0}
-    };
+        static vector<MythQuestion> hardQuestions = {
+            {"Who was cursed to eternal thirst?", {"Tantalus", "Sisyphus", "Prometheus"}, 0},
+            {"Which god carried the heavens?", {"Atlas", "Cronus", "Hyperion"}, 0},
+            {"Who turned Actaeon into a stag?", {"Artemis", "Hera", "Athena"}, 0},
+            {"Which muse inspired epic poetry?", {"Calliope", "Clio", "Erato"}, 0},
+            {"Who is the goddess of retribution?", {"Nemesis", "Nike", "Nyx"}, 0},
+            {"Which Titan ruled during the Golden Age?", {"Cronus", "Oceanus", "Hyperion"}, 0},
+            {"What creature is part lion, goat, and snake?", {"Chimera", "Cerberus", "Sphinx"}, 0},
+            {"What did Persephone eat in the Underworld?", {"Pomegranate seeds", "Olives", "Grapes"}, 0},
+            {"Who is the personification of night?", {"Nyx", "Selene", "Eos"}, 0},
+            {"What did Orpheus use to charm Hades?", {"Lyre", "Flute", "Panpipes"}, 0},
+            {"Who was the father of the Minotaur?", {"Minos", "Poseidon", "Zeus"}, 0},
+            {"What caused Narcissus' death?", {"His reflection", "A curse", "Hera"}, 0},
+            {"Which god is twin to Artemis?", {"Apollo", "Ares", "Hermes"}, 0},
+            {"What is the name of Hades' helm?", {"Helm of Darkness", "Aegis", "Cap of Invisibility"}, 0},
+            {"Which creature is a winged lion with a human face?", {"Sphinx", "Chimera", "Griffin"}, 0},
+            {"Who was the mother of Dionysus?", {"Semele", "Rhea", "Leto"}, 0},
+            {"Which river must souls cross?", {"Styx", "Lethe", "Phlegethon"}, 0},
+            {"Who was punished by having his liver eaten daily?", {"Prometheus", "Tantalus", "Sisyphus"}, 0},
+            {"What creature lured sailors with song?", {"Sirens", "Harpies", "Nymphs"}, 0},
+            {"What guards the Golden Fleece?", {"Dragon", "Hydra", "Giant"}, 0}
+        };
     
-    struct QuizLevel {
-        string name;
-        int questionCount;
-        int faithReward;
-        int faithPenalty;
-        int trustReward;
-        int trustPenalty;
-    };
-
-    vector<QuizLevel> levels = {
-        {"easy", 5, 3, 2, 5, 2},     // +3 faith, -2 faith | +5 trust, -2 trust
-        {"medium", 10, 5, 6, 5, 3},   // +10 faith, -5 faith | +6 trust, -3 trust
-        {"hard", 15, 8, 5, 5, 3}     // +7 faith, -10 faith | +5 trust, -3 trust
-    };
+        // Fates dialogue by difficulty
+        vector<string> correctEasy = {
+            "*A lucky guess?*", "*You remember your bedtime stories well.*",
+            "*The thread wavers... but does not break.*", "*Even the young get it right sometimes.*"
+        };
+        vector<string> wrongEasy = {
+            "*Tsk, tsk. You weren't paying attention, were you?*", "*That’s not how the myths go.*",
+            "*Childish mistake.*", "*Even the Muses groan.*"
+        };
+        vector<string> correctMedium = {
+            "*Hmm. Perhaps there's knowledge in that skull after all.*", "*The thread shimmers faintly...*",
+            "*Still standing. Surprising.*", "*Not bad for a mortal.*"
+        };
+        vector<string> wrongMedium = {
+            "*Wrong. The thread snaps ever tighter.*", "*Your grasp of myth is... fragile.*",
+            "*Do you even listen when the bards sing?*", "*Another stumble on the staircase to ruin.*"
+        };
+        vector<string> correctHard = {
+            "*You’ve done your homework. Hmph.*", "*A mortal mind sharp enough to cut fate? Intriguing.*",
+            "*The tapestry shifts. We didn't expect that.*", "*Very few know that one...*"
+        };
+        vector<string> wrongHard = {
+            "*Pathetic. The threads laugh at you.*", "*That answer belongs in Tartarus.*",
+            "*Even the shadows know more.*", "*You were not meant to know this, clearly.*"
+        };
     
-
-    for (const QuizLevel& level : levels) {
-        displaySpeakerDialogue("Fates", "Fates:'*Let us test the thread, " + level.name + " first...*'");
-        randomizedFatesTaunt(player);
+        // Quiz metadata
+        struct QuizLevel {
+            string name;
+            int questionCount;
+            int reward;
+            int penalty;
+            vector<MythQuestion>* questions;
+            vector<string> correctLines;
+            vector<string> wrongLines;
+        };
     
-        vector<MythQuestion>* selectedSet;
+        vector<QuizLevel> levels = {
+            {"easy", 3, 3, 2, &easyQuestions, correctEasy, wrongEasy},
+            {"medium", 5, 5, 5, &mediumQuestions, correctMedium, wrongMedium},
+            {"hard", 7, 7, 10, &hardQuestions, correctHard, wrongHard}
+        };
     
-        if (level.name == "easy") selectedSet = &easyQuestions;
-        else if (level.name == "medium") selectedSet = &mediumQuestions;
-        else selectedSet = &hardQuestions;
+        // Run each difficulty level
+        for (const QuizLevel& level : levels) {
+            displaySpeakerDialogue("Fates", "*Let us test the thread, " + level.name + " ...*");
+            randomizedFatesTaunt(player);
     
-        random_shuffle(selectedSet->begin(), selectedSet->end());
-        vector<MythQuestion> questions(selectedSet->begin(), selectedSet->begin() + level.questionCount);
+            vector<MythQuestion> pool = *level.questions;
+            random_shuffle(pool.begin(), pool.end());
+            vector<MythQuestion> questions(pool.begin(), pool.begin() + level.questionCount);
     
-
-        int correctAnswers = 0;
-
-        for (const MythQuestion& q : questions) {
-            vector<pair<int, string>> shuffled;
-            for (int j = 0; j < 3; ++j) {
-                shuffled.push_back({j, q.options[j]});
+            int correctAnswers = 0;
+    
+            for (const MythQuestion& q : questions) {
+                vector<pair<int, string>> shuffled;
+                for (int j = 0; j < 3; ++j)
+                    shuffled.push_back({j, q.options[j]});
+                random_shuffle(shuffled.begin(), shuffled.end());
+    
+                cout << "\n" << q.question << "\n";
+                for (int i = 0; i < 3; ++i)
+                    cout << (i + 1) << ". " << shuffled[i].second << "\n";
+    
+                int answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
+                int selectedIndex = shuffled[answer - 1].first;
+    
+                if (selectedIndex == q.correctIndex) {
+                    string line = level.correctLines[rand() % level.correctLines.size()];
+                    displaySpeakerDialogue("Fates", line);
+                    player.faith += level.reward;
+                    player.trust += level.reward;
+                    if (rand() % 2 == 0) randomizedFatesTaunt(player);
+                    correctAnswers++;
+                } else {
+                    string line = level.wrongLines[rand() % level.wrongLines.size()];
+                    displaySpeakerDialogue("Fates", line);
+                    player.faith -= level.penalty;
+                    player.trust -= level.penalty;
+                    randomizedFatesTaunt(player);
+                }
+    
+                player.faith = max(0, min(100, player.faith));
+                player.trust = max(0, min(100, player.trust));
             }
-            random_shuffle(shuffled.begin(), shuffled.end());
-
-            cout << "\n" << q.question << "\n";
-            for (int i = 0; i < 3; ++i) {
-                cout << (i + 1) << ". " << shuffled[i].second << "\n";
-            }
-
-            int answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
-            int selectedIndex = shuffled[answer - 1].first;
-
-            if (selectedIndex == q.correctIndex) {
-                displaySpeakerDialogue("Fates", "*Hmm. Correct. For now.*");
-                player.faith += level.faithReward;
-                player.trust += level.trustReward;
-
-                if (rand() % 2 == 0) randomizedFatesTaunt(player);
-                correctAnswers++;
+    
+            if (correctAnswers == level.questionCount) {
+                displaySpeakerDialogue("Fates", "*Hmph. Perhaps you *do* know something.*");
+            } else if (correctAnswers >= level.questionCount / 2) {
+                displaySpeakerDialogue("Fates", "*Barely good enough.*");
             } else {
-                displaySpeakerDialogue("Fates", "*Wrong. Your thread frays.*");
-                player.faith -= level.faithPenalty;
-                player.trust -= level.trustPenalty;
-
-                randomizedFatesTaunt(player);
+                displaySpeakerDialogue("Fates", "*Pitiful. Tattered and threadbare.*");
             }
-            //Clamps for faith and trust
-            player.faith = max(0, min(100, player.faith));
-            player.trust = max(0, min(100, player.trust));
-
+    
+            cout << "Faith: " << player.faith << "% | Trust: " << player.trust << "%\n\n";
         }
-
-        // Level summary
-        if (correctAnswers == level.questionCount) {
-            displaySpeakerDialogue("Fates", "Fates:'*Hmph. Perhaps you *do* know something.*'");
-        } else if (correctAnswers >= level.questionCount / 2) {
-            displaySpeakerDialogue("Fates", "Fates:'*Barely good enough.*'");
-        } else {
-            displaySpeakerDialogue("Fates", "Fates:'*Pitiful. Tattered and threadbare.*'");
-        }
-
-        cout << "Faith: " << player.faith << "%\n\n";
+    
+        displayDialogue("The Fates fall silent... for now.");
     }
-
-    displayDialogue("The Fates fall silent... for now.");
-}
-
+    
+    
 
     
 

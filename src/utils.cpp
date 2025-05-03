@@ -6,8 +6,7 @@
 #include <limits>
 #include <cstdlib>
 #include <fstream>
-
-using namespace std;
+#include <sstream>
 
 // ANSI escape codes for colors
 const string RESET = "\033[0m";
@@ -42,27 +41,43 @@ string getSpeakerName(Speaker speaker) {
     }
 }
 
+const int WRAP_WIDTH = 80; // Set your preferred wrap width here
+
+string wrapText(const string& input, int width) {
+    istringstream words(input);
+    ostringstream wrapped;
+    string word;
+    int lineLength = 0;
+
+    while (words >> word) {
+        if (lineLength + word.length() + 1 > width) {
+            wrapped << "\n";
+            lineLength = 0;
+        }
+        if (lineLength != 0) {
+            wrapped << " ";
+            lineLength++;
+        }
+        wrapped << word;
+        lineLength += word.length();
+    }
+    return wrapped.str();
+}
+
 void displayDialogue(const std::string& message, int delayMs) {
-    for (char c : message) {
+    string wrapped = wrapText(message, WRAP_WIDTH);
+    for (char c : wrapped) {
         std::cout << c << std::flush;
         std::this_thread::sleep_for(std::chrono::milliseconds(delayMs));
     }
     std::cout << std::endl;
 }
 
-// Overloaded version using global setting
 void displayDialogue(const std::string& message) {
     displayDialogue(message, textSpeed);
 }
 
-
 void displaySpeakerDialogue(const string& speaker, const string& message) {
-    string fullLine = speaker + ": " + message;
-    if (disableColor) {
-        displayDialogue(message, textSpeed);
-        return;
-    }
-
     string color;
     if (speaker == "Hermes") color = "\033[37m";
     else if (speaker == "Hades") color = "\033[31m";
@@ -71,10 +86,18 @@ void displaySpeakerDialogue(const string& speaker, const string& message) {
     else if (speaker == "Fates") color = "\033[34m";
     else if (speaker == "Eurydice") color = "\033[36m";
 
-    cout << color;
-    displayDialogue(message, textSpeed);
-    cout << RESET;
+    string full = speaker + ": " + message;
+    string wrapped = wrapText(full, WRAP_WIDTH);
+
+    if (disableColor) {
+        displayDialogue(wrapped, textSpeed);
+    } else {
+        cout << color;
+        displayDialogue(wrapped, textSpeed);
+        cout << RESET;
+    }
 }
+
 
 
 
