@@ -1,6 +1,8 @@
 #ifndef FAITHSYSTEM_H
 #define FAITHSYSTEM_H
 #include "characters.h"
+#include <vector>
+#include <string>
 extern float faith;
 
 // Functions to manage the player's faith
@@ -19,5 +21,12 @@ void randomizedFatesTaunt(const Character& player);
 
 //Doubt comes in with tricky fingers.
 void askFaithQuestions(Character& player);
+
+struct MCQuestion {
+    std::string questionText;
+    std::vector<std::string> options;
+    int correctIndex;
+};
+
 
 #endif

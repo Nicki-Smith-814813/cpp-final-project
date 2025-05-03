@@ -3,6 +3,7 @@
 #include <ctime>   // For time()
 #include "game.h"
 #include "utils.h"
+#include "settings.h"
 
 int main() {
     srand(time(0));
@@ -12,7 +13,7 @@ int main() {
 
     try {
         Game game;
-        game.start();
+        game.showMainMenu();  // Call the new menu
     } catch (const std::exception& e) {
         std::cerr << "Fatal error: " << e.what() << std::endl;
         return 1;

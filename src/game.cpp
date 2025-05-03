@@ -1,6 +1,7 @@
 #include "characters.h"
 #include "utils.h"
 #include "game.h"
+#include "settings.h"
 #include "scenes/scene_00_waydown.h"
 #include "scenes/scene_01_chantI.h"
 #include "scenes/scene_02_waitForMe.h"
@@ -29,7 +30,31 @@ Game::Game() {
 void Game::init() {
  
 }
+void Game::showMainMenu() {
+    bool running = true;
 
+    while (running) {
+        cout << "\n=== Main Menu ===\n";
+        cout << "1. Start Game\n";
+        cout << "2. Settings\n";
+        cout << "3. Exit\n";
+
+        int choice = getValidatedInput<int>("Choose an option: ", 1, 3);
+
+        switch (choice) {
+            case 1:
+                start();  // Begins the game
+                break;
+            case 2:
+                openSettingsMenu();  // Launches your accessibility menu
+                break;
+            case 3:
+                cout << "Goodbye, traveler...\n";
+                running = false;
+                break;
+        }
+    }
+}
 // Main game start function
 void Game::start() {
     cout << "Welcome to 'Hadestown'..." << endl;
@@ -69,5 +94,12 @@ void Game::start() {
 
 // Endgame sequence
 void Game::endGame() {
-    cout << "\nThanks for playing!" << endl;
+    std::cout << "\nThanks for playing!\n";
+
+    int choice = getValidatedInput<int>(
+        "\nWould you like to return to the main menu? (1 = Yes, 2 = No): ", 1, 2);
+    if (choice == 2) {
+        exit(0);  // immediately quit program
+    }
 }
+

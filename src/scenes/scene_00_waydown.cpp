@@ -15,8 +15,10 @@ void persephoneAndHadesConflict();
 // Scene entry point
 void scene_00_waydown(Character& player) {
     hermesNarration();
+    theFatesGlitteringPromises();
     talkToEurydice(player);
     persephoneAndHadesConflict();
+    cout << "Your current faith level: " << player.faith << "%";
 }
 
 // Hermes' Narration
@@ -27,12 +29,33 @@ void hermesNarration() {
     displaySpeakerDialogue("Hermes", "Love doesn't stay silent for long, not even in the depths of the underworld.");
 }
 
+//The Fates' speak to Eurydice
+void theFatesGlitteringPromises() {
+    displaySpeakerDialogue("Fates", "*Where is he now, your golden-voiced boy?*");
+    displaySpeakerDialogue("Fates", "*Chasing melodies in his head while your stomach knots itself shut.*");
+    
+    displaySpeakerDialogue("Eurydice", "He’s trying. He believes things will turn around.");
+    displaySpeakerDialogue("Fates", "*Belief doesn’t fill your hands, girl.*");
+    displaySpeakerDialogue("Fates", "*It doesn’t keep the wolves from your door.*");
+    
+    displaySpeakerDialogue("Fates", "*Hadestown does.*");
+    displaySpeakerDialogue("Fates", "*A bed. A job. Bread every day. And no waiting on a man who forgets to come home.*");
+    
+    displaySpeakerDialogue("Eurydice", "...He hasn’t forgotten me.");
+    displaySpeakerDialogue("Fates", "*No? Then why do you eat alone?*");
+    
+    displaySpeakerDialogue("Fates", "*Why do your bones shake when the wind howls?*");
+    displaySpeakerDialogue("Fates", "*Come underground. At least there, the silence is warm.*");
+    
+}
+
 // Eurydice Dialogue Choices
 void talkToEurydice(Character& player) {
     vector<string> choices = {
-        "Tell Eurydice: 'Hadestown is a graveyard, not a gold mine. Don't believe the Fates.'",
-        "Tell Eurydice: 'The Fates speak only truth. Maybe you should listen to them.'",
-        "Stay silent and let Eurydice decide on her own."
+    "Say: 'You're not forgotten, Eurydice. I'm still here. You don’t have to go.'",
+    "Say: 'Maybe... maybe they're right. You deserve more than what I’ve given you.'",
+    "Say nothing. Just watch her eyes drift toward the dark."
+
     };
 
     displayDialogue("You approach Eurydice...");
@@ -47,40 +70,52 @@ void talkToEurydice(Character& player) {
 
     switch (choice) {
         case 1:
-            displaySpeakerDialogue("Orpheus", "Hadestown is a graveyard, Eurydice. It may glitter with gold, but it will take everything from you.");
-            player.faith += 2;
-            player.trust += 2;
+            displaySpeakerDialogue("Orpheus", "You're not forgotten, Eurydice. I'm still here. You don’t have to go.");
+
+            player.faith += 10;
+            player.trust += 10;
             break;
         case 2:
-            displaySpeakerDialogue("Orpheus", "The Fates speak truth, Eurydice. Maybe you should listen to them.");
-            player.trust -= 1;
+            displaySpeakerDialogue("Orpheus", "Maybe... maybe they're right. You deserve more than what I’ve given you.");
+
+            player.trust -= 5;
+            player.faith -= 5;
             break;
         case 3:
-            displayDialogue("You remain silent. Eurydice sighs and looks away.");
-            player.trust -= 2;
+            displayDialogue("You say nothing. Eurydice’s eyes linger on you, then drift toward the dark.");
+
+            player.trust -= 10;
+            player.faith -= 10;
             break;
     }
 
     // Clamp trust
     player.trust = max(0, min(100, player.trust));
+    // Clamp faith
+    player.faith = max(0, min(100, player.faith));
 
     // Branching outcome based on trust
-    if (player.trust <= 2) {
-        displaySpeakerDialogue("Eurydice", "You don’t understand. You never did.");
-        displayDialogue("She turns away, and walks down a path you cannot follow.");
-    } else if (player.trust <= 5) {
-        displaySpeakerDialogue("Eurydice", "I want to believe you. But... I don’t know if I can.");
-        displayDialogue("She lingers, uncertain. The Fates whisper louder now.");
+    if (player.trust <= 50) {
+        displaySpeakerDialogue("Eurydice", "You say that now... but will you still be here tomorrow?");
+        displayDialogue("Her voice trembles — but she hasn’t walked away. Not yet.");
+
+    } else if (player.trust <= 50) {
+        displaySpeakerDialogue("Eurydice", "At least you're honest. I don’t want to keep waiting for a dream to feed me.");
+        displayDialogue("She turns slightly toward the Fates, her posture guarded but drawn.");
     } else {
-        displaySpeakerDialogue("Eurydice", "I trust you, Orpheus. Lead the way.");
-        displayDialogue("She steps beside you. Whatever lies ahead, she will face it with you.");
+        displaySpeakerDialogue("Eurydice", "...Nothing? Not even now?");
+        displayDialogue("She shakes her head and starts walking toward the waiting dark.");
+
     }
 }
 
 // Persephone and Hades Argument
 void persephoneAndHadesConflict() {
-    displaySpeakerDialogue("Persephone", "You’re shutting me out, Hades!");
-    displaySpeakerDialogue("Hades", "You think I don’t care, Persephone? I do what I must to keep this place running!");
-    displaySpeakerDialogue("Persephone", "I’m doing the best I can... but you—you built walls too high to climb.");
+    displaySpeakerDialogue("Persephone", "Persephone:'You’re shutting me out, Hades!'");
+    displaySpeakerDialogue("Hades", "Hades:'You think I don’t care, Persephone?'");
+    displaySpeakerDialogue("Hades","Hades:'I do what I must to keep this place running!'");
+    displaySpeakerDialogue("Persephone", "Persephone:'I’m doing the best I can...'");
+    displaySpeakerDialogue("Persephone","Persephone:'but you—you built walls too high to climb.'");
     displayDialogue("Their words stab at each other, but neither can break the walls they've built between them.");
+
 }

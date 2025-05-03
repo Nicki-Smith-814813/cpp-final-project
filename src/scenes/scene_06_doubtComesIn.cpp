@@ -14,9 +14,9 @@ void scene_06_doubtComesIn(Character& player) {
     displayDialogue("Each step forward feels heavier than the last. Each breath, a battle.\n");
     displayDialogue("Behind you, silence. Ahead, uncertainty. And around you... whispers.\n");
 
-    displaySpeakerDialogue("Fates", "You don't know where you are.");
-    displaySpeakerDialogue("Fates", "You don't know how far.");
-    displaySpeakerDialogue("Fates", "You don't even know what you're walking toward.");
+    displaySpeakerDialogue("Fates","Fates: 'You don't know where you are.'");
+    displaySpeakerDialogue("Fates","Fates:'You don't know how far.'");
+    displaySpeakerDialogue("Fates","Fates:'You don't even know what you're walking toward.'");
 
     displayDialogue("You grit your teeth. You press on.\n");
     
@@ -25,8 +25,8 @@ void scene_06_doubtComesIn(Character& player) {
 
     displayDialogue("\nThe whispers grow louder. The doubt heavier.\n");
 
-    displaySpeakerDialogue("Fates", "Did you ever really believe you could do it?");
-    displaySpeakerDialogue("Fates", "You’re gonna lose her. You’re gonna lose her.");
+    displaySpeakerDialogue("Fates","Fates:'Did you ever really believe you could do it?'");
+    displaySpeakerDialogue("Fates","Fates:'You’re gonna lose her. You’re gonna lose her.'");
 
     displayDialogue("Your hands tremble. Your heart stutters.\n");
     displayDialogue("One more choice. One last step...\n");

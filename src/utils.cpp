@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "settings.h"  // for textSpeed
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -41,31 +42,41 @@ string getSpeakerName(Speaker speaker) {
     }
 }
 
-void displayDialogue(const string& message, int delayMs) {
+void displayDialogue(const std::string& message, int delayMs) {
     for (char c : message) {
-        cout << c << flush;
-        this_thread::sleep_for(chrono::milliseconds(delayMs));
+        std::cout << c << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(delayMs));
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
-void displaySpeakerDialogue(const string& speaker, const string& message) {
-    if (speaker == "Hermes") {
-        cout << "\033[37m" << speaker << ": " << message << "\033[0m" << endl;
-    } else if (speaker == "Hades") {
-        cout << "\033[31m" << speaker << ": " << message << "\033[0m" << endl;
-    } else if (speaker == "Persephone") {
-        cout << "\033[32m" << speaker << ": " << message << "\033[0m" << endl;
-    } else if (speaker == "Orpheus") {
-        cout << "\033[33m" << speaker << ": " << message << "\033[0m" << endl;
-    } else if (speaker == "Fates") {
-        cout << "\033[34m" << speaker << ": " << message << "\033[0m" << endl;
-    } else if (speaker == "Eurydice") {
-        cout << "\033[36m" << speaker << ": " << message << "\033[0m" << endl;
-    } else {
-        cout << speaker << ": " << message << endl;
-    }
+// Overloaded version using global setting
+void displayDialogue(const std::string& message) {
+    displayDialogue(message, textSpeed);
 }
+
+
+void displaySpeakerDialogue(const string& speaker, const string& message) {
+    string fullLine = speaker + ": " + message;
+    if (disableColor) {
+        displayDialogue(message, textSpeed);
+        return;
+    }
+
+    string color;
+    if (speaker == "Hermes") color = "\033[37m";
+    else if (speaker == "Hades") color = "\033[31m";
+    else if (speaker == "Persephone") color = "\033[32m";
+    else if (speaker == "Orpheus") color = "\033[33m";
+    else if (speaker == "Fates") color = "\033[34m";
+    else if (speaker == "Eurydice") color = "\033[36m";
+
+    cout << color;
+    displayDialogue(message, textSpeed);
+    cout << RESET;
+}
+
+
 
 
 void displayChoice(const string& prompt, const string choices[], int numChoices) {
