@@ -65,26 +65,47 @@ void Game::start() {
 
     scene_00_waydown(player);
     AUTO_SAVE(player);
+    pause();
+    clearScreen();
 
     scene_01_chantI(player);
     AUTO_SAVE(player);
+    dramaticPause(1500);
+    pause();
+    clearScreen();
 
     scene_02_waitForMe(player);
     AUTO_SAVE(player);
+    dramaticPause(1500);
+    pause();
+    clearScreen();
 
     scene_03_howLong();
+    dramaticPause(1000);
+    pause();
+    clearScreen();
 
     scene_04_chantII(player);
     AUTO_SAVE(player);
+    pause();
+    clearScreen();
 
     scene_05_epicIII(player);
     AUTO_SAVE(player);
+    dramaticPause(1000);
+    pause();
+    clearScreen();
 
     scene_06_doubtComesIn(player);
     AUTO_SAVE(player);
+    dramaticPause(2000);
+    pause();
+    clearScreen();
 
     scene_07_roadToHell(player);
     AUTO_SAVE(player);
+    pause();
+    clearScreen();
 
     endGame();
 }

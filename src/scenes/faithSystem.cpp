@@ -246,15 +246,15 @@ bool hadesSaysChallenge(Character& player) {
 
     // Adjust stats based on performance
     if (score == 5) {
-        displaySpeakerDialogue("Hades","Hades:'Impressive. Maybe there's hope for you yet.'");
+        displaySpeakerDialogue("Hades","'Impressive. Maybe there's hope for you yet.'");
         player.faith += 10;
         player.trust += 10;
     } else if (score >= 3) {
-        displaySpeakerDialogue("Hades","Hades:'You’re not entirely hopeless.'");
+        displaySpeakerDialogue("Hades","'You’re not entirely hopeless.'");
         player.faith += 5;
         player.trust += 5;
     } else {
-        displaySpeakerDialogue("Hades","Hades:'Pathetic. Try harder next time.'");
+        displaySpeakerDialogue("Hades","'Pathetic. Try harder next time.'");
         player.faith -= 5;
         player.trust -= 5;
     }
@@ -265,16 +265,16 @@ bool hadesSaysChallenge(Character& player) {
 
     return (score >= 3); // return true if pass, false if fail
 
-    cout << "Your current faith level: " << player.faith << "%";
+    cout << "Your current faith level: " << player.faith << "%\n";
 }
 
 
 // Musical challenge
 bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
     if (isRetry) {
-        displaySpeakerDialogue("Hades", "Hades:'You dare try again, boy? The melody grows longer...'");
+        displaySpeakerDialogue("Hades", "'You dare try again, boy? The melody grows longer...'");
     } else {
-        displaySpeakerDialogue("Hades", "Hades:'Let's see if you can truly sing your way out of this place.'");
+        displaySpeakerDialogue("Hades", " 'Let's see if you can truly sing your way out of this place.'");
     }
 
     int flashDelay = 600;
@@ -286,10 +286,10 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
         melodyLength = 5;
     } else if (difficultyLevel == 2) {
         melodyLength = 7;
-        displaySpeakerDialogue("Fates", "Fates:'*The melody grows longer... the threads twist tighter...*'");
+        displaySpeakerDialogue("Fates", " '*The melody grows longer... the threads twist tighter...*'");
     } else {
         melodyLength = 10;
-        displaySpeakerDialogue("Fates", "Fates:'*The melody is endless, boy... Can you even hear it anymore?*'");
+        displaySpeakerDialogue("Fates", " '*The melody is endless, boy... Can you even hear it anymore?*'");
     }
 
     string notes[] = {"Do", "Re", "Mi", "Fa", "So", "La", "Ti"};
@@ -298,7 +298,7 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
 
     displayDialogue("Hades leans back, watching Orpheus with an iron gaze...");
     randomizedFatesTaunt(player);
-    displaySpeakerDialogue("Hades", "Hades:'Here’s the melody. Listen carefully.'");
+    displaySpeakerDialogue("Hades", " 'Here’s the melody. Listen carefully.'");
     dramaticPause(startDelay);
 
     for (int i = 0; i < melodyLength; ++i) {
@@ -321,7 +321,7 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
 
     int replay = getValidatedInput<int>("Do you want to hear the melody again? (1 = Yes, 2 = No): ", 1, 2);
     if (replay == 1) {
-        displaySpeakerDialogue("Fates", "Fates:'*Listen once more...*'");
+        displaySpeakerDialogue("Fates", " '*Listen once more...*'");
         dramaticPause(500);
         playMelody();
         randomizedFatesTaunt(player);
@@ -339,7 +339,7 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
         if (n >= 1 && n <= 7) {
             playerSequence.push_back(n);
         } else {
-            displaySpeakerDialogue("Fates", "Fates:'*You played a forbidden note...*'");
+            displaySpeakerDialogue("Fates", " '*You played a forbidden note...*'");
             player.faith -= 5;
             player.trust -= 3;
             player.faith = max(0, player.faith);
@@ -349,7 +349,7 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
     }
 
     if (playerSequence.size() != static_cast<size_t>(melodyLength)) {
-        displaySpeakerDialogue("Fates", "Fates:'*The sequence is the wrong length. Are you guessing?*'");
+        displaySpeakerDialogue("Fates", " '*The sequence is the wrong length. Are you guessing?*'");
         player.faith -= 5;
         player.trust -= 3;
         player.faith = max(0, player.faith);
@@ -367,15 +367,15 @@ bool musicalGame(Character& player, bool isRetry, int difficultyLevel) {
     int mistakes = melodyLength - correct;
 
     if (mistakes == 0) {
-        displaySpeakerDialogue("Hades", "Hades:'Impressive. Your memory serves you well.'");
+        displaySpeakerDialogue("Hades", " 'Impressive. Your memory serves you well.'");
         player.faith += 10;
         player.trust += 10;
     } else if (mistakes <= 2) {
-        displaySpeakerDialogue("Fates", "Fates:'*Close enough... the thread trembles but does not break.*'");
+        displaySpeakerDialogue("Fates", " '*Close enough... the thread trembles but does not break.*'");
         player.faith += 5;
         player.trust += 5;
     } else {
-        displaySpeakerDialogue("Fates", "Fates:'*You falter... the thread snaps.*'");
+        displaySpeakerDialogue("Fates", " '*You falter... the thread snaps.*'");
         player.faith -= 10;
         player.trust -= 5;
         player.faith = max(0, player.faith);
@@ -488,10 +488,10 @@ void askFaithQuestions(Character& player) {
 
         int answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
         if (answer - 1 == q.correctIndex) {
-            displaySpeakerDialogue("Fates", "Fates:'Maybe you know a thing or two...'");
+            displaySpeakerDialogue("Fates", " 'Maybe you know a thing or two...'");
             player.faith += 5;
         } else {
-            displaySpeakerDialogue("Fates", "Fates:'Didn't think so. Little songbird lost.'");
+            displaySpeakerDialogue("Fates", " 'Didn't think so. Little songbird lost.'");
             player.faith -= 5;
         }
 
@@ -499,6 +499,6 @@ void askFaithQuestions(Character& player) {
         if (player.faith > 100.0f) player.faith = 100.0f;
         if (player.faith < 0.0f) player.faith = 0.0f;
     }
-    cout << "Your current faith level: " << player.faith << "%";
+    cout << "Your current faith level: " << player.faith << "%\n";
 }
 

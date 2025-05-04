@@ -86,8 +86,9 @@ void displaySpeakerDialogue(const string& speaker, const string& message) {
     else if (speaker == "Fates") color = "\033[34m";
     else if (speaker == "Eurydice") color = "\033[36m";
 
-    string full = speaker + ": " + message;
-    string wrapped = wrapText(full, WRAP_WIDTH);
+    string header = speaker + ": ";
+    string wrapped = wrapText(header + message, WRAP_WIDTH);
+    
 
     if (disableColor) {
         displayDialogue(wrapped, textSpeed);
@@ -112,7 +113,6 @@ void displayChoice(const string& prompt, const string choices[], int numChoices)
 
 void dramaticPause(int milliseconds = 1000) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
-    clearScreen();
 }
 
 

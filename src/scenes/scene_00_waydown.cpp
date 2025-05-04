@@ -19,7 +19,7 @@ void scene_00_waydown(Character& player) {
     theFatesGlitteringPromises();
     talkToEurydice(player);
     persephoneAndHadesConflict();
-    cout << "Your current faith level: " << player.faith << "%";
+    cout << "Your current faith level: " << player.faith << "%\n";
 }
 
 // Hermes' Narration
@@ -112,11 +112,11 @@ void talkToEurydice(Character& player) {
 
 // Persephone and Hades Argument
 void persephoneAndHadesConflict() {
-    displaySpeakerDialogue("Persephone", "Persephone:'You’re shutting me out, Hades!'");
-    displaySpeakerDialogue("Hades", "Hades:'You think I don’t care, Persephone?'");
-    displaySpeakerDialogue("Hades","Hades:'I do what I must to keep this place running!'");
-    displaySpeakerDialogue("Persephone", "Persephone:'I’m doing the best I can...'");
-    displaySpeakerDialogue("Persephone","Persephone:'but you—you built walls too high to climb.'");
+    displaySpeakerDialogue("Persephone", " 'You’re shutting me out, Hades!'");
+    displaySpeakerDialogue("Hades", " 'You think I don’t care, Persephone?'");
+    displaySpeakerDialogue("Hades"," 'I do what I must to keep this place running!'");
+    displaySpeakerDialogue("Persephone", " 'I’m doing the best I can...'");
+    displaySpeakerDialogue("Persephone"," 'but you—you built walls too high to climb.'");
     displayDialogue("Their words stab at each other, but neither can break the walls they've built between them.");
 
 }
