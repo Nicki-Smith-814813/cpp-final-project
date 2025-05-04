@@ -5,7 +5,7 @@
 #include <string>           // for std::string
 #include <limits>           // for std::numeric_limits
 #include <algorithm>        // for std::max, std::min
-
+#include <vector>
 enum class Speaker {
     Narrator,
     Hades,
@@ -33,8 +33,6 @@ bool loadGame(Character& player, const std::string& filename);
 void autosave(const Character& player);
 
 // Reusable templated input function
-#include <iostream>
-#include <limits>
 using namespace std;
 
 template <typename T>
@@ -61,9 +59,11 @@ T getValidatedInput(const string& prompt, T min = numeric_limits<T>::min(), T ma
 
 
 void clearScreen();
+
 void setSceneTheme(const std::string& colorCode, const std::string& asciiArtFile);
 
 void printAsciiArt(const std::string& filename);
 
+std::string getRandomResponse(const std::vector<std::string>& responses);
 
 #endif

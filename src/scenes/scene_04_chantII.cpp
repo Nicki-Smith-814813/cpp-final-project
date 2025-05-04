@@ -21,16 +21,12 @@ void scene_04_chantII(Character& player) {
         displaySpeakerDialogue("Hades", " 'You’ve earned your chance. Now, play me that song. Let’s see if you can truly convince me.'\n");
     } else {
         // Orpheus fails, Persephone steps in
-        displaySpeakerDialogue("Hades", " 'That was... less than impressive,'");
-        displayDialogue("Hades chuckles darkly.");
-        displaySpeakerDialogue("Persephone", " 'I can't believe you failed that,'");
-        displayDialogue("Persephone says, stepping forward, a little amused but mostly concerned.");
-        displaySpeakerDialogue("Persephone", " 'Hades, you can't be serious. Let him play the song. He deserves the chance.'");
+        displaySpeakerDialogue("Hades","'That was... less than impressive,' Hades chuckles darkly.");
+        displaySpeakerDialogue("Persephone","'I can't believe you failed that,'Persephone says, stepping forward, a little amused but mostly concerned.");
+        displaySpeakerDialogue("Persephone","'Hades, you can't be serious. Let him play the song. He deserves the chance.'");
         displayDialogue("Hades hesitates, his gaze softening slightly as he looks at Persephone.");
-        displaySpeakerDialogue("Hades", " 'Fine,'");
-        displayDialogue("he sighs.");
-        displaySpeakerDialogue("Hades", " 'But only because you’ve asked me to.'");
-        displayDialogue("Persephone smiles at Orpheus, giving him a reassuring nod.");
-        displaySpeakerDialogue("Persephone", " 'You’ve got this, Orpheus. Don’t let him win just yet.'");
+        displaySpeakerDialogue("Hades","'Fine,'he sighs.");
+        displaySpeakerDialogue("Hades","'But only because you’ve asked me to.'");
+        displaySpeakerDialogue("Persephone","Persephone smiles at Orpheus, giving him a reassuring nod.'You’ve got this, Orpheus. Don’t let him win just yet.'");
     }
 }

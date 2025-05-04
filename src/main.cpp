@@ -6,7 +6,7 @@
 #include "settings.h"
 
 int main() {
-    srand(time(0));
+    srand(static_cast<unsigned int>(time(0)));
     std::cout << "Welcome to Hadestown: The RPG!\n\n";
     dramaticPause(1000);
     std::cout << "Tip: Type your answers carefully — the Fates are watching...\n\n";

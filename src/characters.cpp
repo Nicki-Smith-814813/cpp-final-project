@@ -8,4 +8,4 @@ void Character::displayStats() {
 }
 
 float faith = 100.0f;  // Initial value for faith
-float trust = 50.0f;  // Initial value for trust
+float trust = 0.0f;  // Initial value for trust

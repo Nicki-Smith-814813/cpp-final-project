@@ -37,8 +37,6 @@ void scene_06_doubtComesIn(Character& player) {
     } else {
         displayDialogue("You falter. Fear seizes you.\n");
         dramaticPause(2000);
-        displayDialogue("You turn.\n");
-        displayDialogue("The Fates exhale, satisfied.\n");
     }
     
 

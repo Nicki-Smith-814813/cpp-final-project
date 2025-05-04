@@ -12,7 +12,7 @@ void scene_01_chantI(Character& player) {
     displayDialogue("But in her eyes, there is hope—a fragile hope.");
     displaySpeakerDialogue("Eurydice","'How much longer will this song take?'");
     displaySpeakerDialogue("Eurydice","'Love, we need food and firewood the song matters...but-'");
-    displaySpeakerDialogue("Eurydice","'...don't I matter too? See I'm setting by food and wood...");
+    displaySpeakerDialogue("Eurydice","'...don't I matter too? See I'm setting by food and wood...'");
     
     // Player makes a choice
     cout << "Do you want to listen to Eurydice's concerns about food and firewood?\n";
@@ -36,6 +36,11 @@ void scene_01_chantI(Character& player) {
         if (player.faith < 0) player.faith = 0;
         if (player.trust <0) player.trust = 0;
     }
-    printAsciiArt("snake_bite.txt");
+
+    displayDialogue("Suddenly, while gathering supplies, Eurydice yelps in pain!");
+    displayDialogue("A snake slithers away. She’s been bitten. Her breathing grows shallow.");
+    displayDialogue("The venom spreads fast. Her fate now lies with the gods...");
+   
+
     cout << "Your current faith level: " << player.faith << "%\n";
 }

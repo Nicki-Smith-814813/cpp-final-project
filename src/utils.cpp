@@ -4,7 +4,8 @@
 #include <thread>
 #include <chrono>
 #include <limits>
-#include <cstdlib>
+#include <cstdlib> // rand
+#include <ctime>   // time
 #include <fstream>
 #include <sstream>
 
@@ -191,3 +192,8 @@ void printAsciiArt(const std::string& filename) {
     }
 }
 
+std::string getRandomResponse(const std::vector<std::string>& responses) {
+    if (responses.empty()) return "";
+    int index = rand() % responses.size();
+    return responses[index];
+}

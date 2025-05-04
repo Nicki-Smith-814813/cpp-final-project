@@ -5,17 +5,19 @@
 
 // Function for the epilogue
 void scene_07_roadToHell(Character& player) {
-    displayDialogue("The whispers grow louder. The doubt heavier...");
 
     if (player.faith >= 80) {
+        displayDialogue("You step out into the morning's light, fresh air wafting across your face, only to feel a hand gently grasp yours from behind.");
         printAsciiArt("eurydice.txt");
-
-    } else if (player.trust >= 85) {
+        displaySpeakerDialogue("Eurydice","You did it, Orpheus! You've saved me, you had faith in me!");
+    } else if (player.trust >= 70) {
         displayDialogue("You hesitate. But her voice... it's there.");
         displayDialogue("You remember everything she’s risked to follow you.");
         displayDialogue("You do not turn.");
         printAsciiArt("eurydice.txt");
+        displaySpeakerDialogue("Eurydice","You did it, Orpheus! You've saved me, you had faith in me!");
         player.faith += 10;
+
     } else {
         displayDialogue("You turn and she's gone, a mist fleeing the morning light.");
         printAsciiArt("fates_snarl.txt");

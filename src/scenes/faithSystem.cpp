@@ -1,12 +1,13 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
-#include <algorithm>
-#include <limits>
-#include <sstream>
-#include <cmath>  // for abs()
+#include <iostream>     // std::cout, std::cin
+#include <string>       // std::string
+#include <vector>       // std::vector
+#include <cstdlib>      // rand(), srand()
+#include <ctime>        // time()
+#include <algorithm>    // random_shuffle()
+#include <limits>       // input validation
+#include <sstream>      // istringstream in musicalGame()
+#include <cmath>        // abs(), clamp logic
+
 #include "scenes/faithSystem.h"
 #include "characters.h"
 #include "utils.h"
@@ -121,6 +122,25 @@ void mythQuestions(Character& player) {
             "*Even the shadows know more.*", "*You were not meant to know this, clearly.*"
         };
     
+        vector<string> excellentResponses = {
+            "*Hmph. Perhaps you *do* know something.*",
+            "*Luck? No... perhaps fate.*",
+            "*You walk the thread well—for now.*"
+        };
+        
+        vector<string> averageResponses = {
+            "*Barely good enough.*",
+            "*You cling to the thread, but it frays.*",
+            "*Middling. A thread that may snap.*"
+        };
+        
+        vector<string> poorResponses = {
+            "*Pitiful. Tattered and threadbare.*",
+            "*You stumble, blind to fate.*",
+            "*Lost in the weave, are you?*"
+        };
+        
+
         // Quiz metadata
         struct QuizLevel {
             string name;
@@ -133,9 +153,9 @@ void mythQuestions(Character& player) {
         };
     
         vector<QuizLevel> levels = {
-            {"easy", 3, 3, 2, &easyQuestions, correctEasy, wrongEasy},
-            {"medium", 5, 5, 5, &mediumQuestions, correctMedium, wrongMedium},
-            {"hard", 7, 7, 10, &hardQuestions, correctHard, wrongHard}
+            {"easy first", 3, 3, 2, &easyQuestions, correctEasy, wrongEasy},
+            {"medium next", 5, 5, 5, &mediumQuestions, correctMedium, wrongMedium},
+            {"hard finally", 7, 7, 10, &hardQuestions, correctHard, wrongHard}
         };
     
         // Run each difficulty level
@@ -180,14 +200,15 @@ void mythQuestions(Character& player) {
                 player.faith = max(0, min(100, player.faith));
                 player.trust = max(0, min(100, player.trust));
             }
-    
+            
             if (correctAnswers == level.questionCount) {
-                displaySpeakerDialogue("Fates", "*Hmph. Perhaps you *do* know something.*");
+                displaySpeakerDialogue("Fates", getRandomResponse(excellentResponses));
             } else if (correctAnswers >= level.questionCount / 2) {
-                displaySpeakerDialogue("Fates", "*Barely good enough.*");
+                displaySpeakerDialogue("Fates", getRandomResponse(averageResponses));
             } else {
-                displaySpeakerDialogue("Fates", "*Pitiful. Tattered and threadbare.*");
+                displaySpeakerDialogue("Fates", getRandomResponse(poorResponses));
             }
+            
     
             cout << "Faith: " << player.faith << "% | Trust: " << player.trust << "%\n\n";
         }
@@ -487,13 +508,33 @@ void askFaithQuestions(Character& player) {
         }
 
         int answer = getValidatedInput<int>("Enter your answer (1-3): ", 1, 3);
+
+        vector<string> correctResponses = {
+            "'Maybe you know a thing or two...'",
+            "'Hmph. Beginner’s luck?'",
+            "'Even a broken sundial is right sometimes.'",
+            "'You thread the needle... this time.'",
+            "'One step on the path — don't get cocky.'",
+            "'The songbird chirps in tune — barely.'"
+        };
+        
+        vector<string> incorrectResponses = {
+            "'Didn't think so. Little songbird lost.'",
+            "'Wrong. But you already knew that, didn’t you?'",
+            "'Even shadows laugh at your ignorance.'",
+            "'The Fates are not impressed.'",
+            "'You clutch at threads and grasp only dust.'",
+            "'Hope is a sharp thing to bleed on.'"
+        };
+
         if (answer - 1 == q.correctIndex) {
-            displaySpeakerDialogue("Fates", " 'Maybe you know a thing or two...'");
-            player.faith += 5;
+    displaySpeakerDialogue("Fates", getRandomResponse(correctResponses));
+    player.faith += 5;
         } else {
-            displaySpeakerDialogue("Fates", " 'Didn't think so. Little songbird lost.'");
-            player.faith -= 5;
-        }
+    displaySpeakerDialogue("Fates", getRandomResponse(incorrectResponses));
+    player.faith -= 5;
+            }
+
 
         // Clamp faith between 0 and 100
         if (player.faith > 100.0f) player.faith = 100.0f;

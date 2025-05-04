@@ -12,7 +12,7 @@ void scene_05_epicIII(Character& player) {
     displayDialogue("Their voices slither into Hades' mind like dark mist.");
     dramaticPause(1500);
     displayDialogue("Hades looks uncertain, the Fates' words lingering.");
-    displaySpeakerDialogue("Hades"," 'I... I don't know...' he mutters.");
+    displaySpeakerDialogue("Hades"," 'I... I don't know...' he mutters.'");
     dramaticPause(500);
     displaySpeakerDialogue("Hades"," 'But if they leave, will the system hold? Will everything fall apart?'");
 
@@ -71,7 +71,7 @@ void scene_05_epicIII(Character& player) {
             bool fatesChallenge = musicalGame(player, true, 3);
 
             if (fatesChallenge) {
-                displaySpeakerDialogue("Hades"," 'Fine. You've earned it. Go.");
+                displaySpeakerDialogue("Hades"," 'Fine. You've earned it. Go.'");
                 increaseFaith(player, 20); // 🌟 Reward Faith for surviving the Fates!
             } else {
                 displaySpeakerDialogue("Fates"," *Snapped like a broken string...*");

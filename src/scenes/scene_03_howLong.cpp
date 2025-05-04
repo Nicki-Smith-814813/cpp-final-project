@@ -12,41 +12,41 @@ void scene_03_howLong() {
     displayDialogue("Persephone is pacing, clearly agitated, while Hades remains seated, his brow furrowed as he stares into the distance.\n");
 
     // Dialogue between Hades and Persephone
-    displaySpeakerDialogue("Persephone"," 'Hades, you can't just keep things the way they are!");
-    displaySpeakerDialogue("Persephone"," 'Orpheus deserves the chance to bring Eurydice back.");
+    displaySpeakerDialogue("Persephone"," 'Hades, you can't just keep things the way they are!'");
+    displaySpeakerDialogue("Persephone"," 'Orpheus deserves the chance to bring Eurydice back.'");
     displaySpeakerDialogue("Persephone"," 'If you don't let him go, it will only make things worse.'");
 
     displaySpeakerDialogue("Hades"," (calmly, but with tension in his voice)'You think I don't know that? I care about Orpheus, I do. But allowing one person to leave... What happens when others see that? The whole system will collapse.'");
 
     displaySpeakerDialogue("Persephone","(passionately): 'You don't get it, do you? You're not seeing the bigger picture!'");
     displaySpeakerDialogue("Persephone"," 'You think I'm here because of all of this—this throne, this power.'");
-    dramaticPause(500);
+    dramaticPause(1000);
     displaySpeakerDialogue("Persephone"," 'But it’s you I want, not the riches or the walls of this place!'");
     displaySpeakerDialogue("Persephone"," 'You’re so focused on maintaining control that you’ve forgotten how to love me.'");
 
-    displaySpeakerDialogue("Hades","Hades(looking away, voice filled with regret):");
-    dramaticPause(1000);
+    displaySpeakerDialogue("Hades","(looking away, voice filled with regret):");
+    dramaticPause(2000);
     displaySpeakerDialogue("Hades"," 'Everything I do... I do it out of love for you. I want to keep you safe, to make sure you're not lost, but it feels like I’m losing you anyway. I’ve built this place for you, for us. Can’t you see that?'");
 
     displaySpeakerDialogue("Persephone","(stops pacing, turning to him, hurt): 'You built a world, Hades...'");
     displaySpeakerDialogue("Persephone","'But not one where I feel like I belong. I don’t need the bright lights of the world above. I need you. Just YOU.'");
     displaySpeakerDialogue("Persephone","'But you’ve become a ghost in your own kingdom.'");
 
-    displaySpeakerDialogue("Hades","Hades(his voice cracks slightly): 'I’m not a ghost. I’m just...'");
-    dramaticPause(1500);
+    displaySpeakerDialogue("Hades","(his voice cracks slightly): 'I’m not a ghost. I’m just...'");
+    dramaticPause(2500);
     displaySpeakerDialogue("Hades","'...scared. I don’t know how to fix what’s broken.'");
     displaySpeakerDialogue("Hades","'And I fear that if I allow even one person to leave Hadestown, it will all fall apart.'");
     displaySpeakerDialogue("Hades","'The power I’ve built... I’ve worked my whole life to make sure it stands.'");
 
     displaySpeakerDialogue("Persephone","(softly, with a gentle but firm tone): 'I understand your fear. But you can’t rule everything. And you can’t keep me here with your walls.'");
     displaySpeakerDialogue("Persephone","'If you love me, show me that you’re willing to fight for us—'");
-    dramaticPause(500);
+    dramaticPause(1500);
     displaySpeakerDialogue("Persephone","'by trusting in love, not power.'");
-    dramaticPause(500);
+    dramaticPause(2000);
     displaySpeakerDialogue("Hades","(pauses, looking at her with longing, but still uncertain): 'And if everything falls apart? If this all ends, what then?'");
 
     displaySpeakerDialogue("Persephone","(sighing, looking at him with a mix of sadness and affection): 'Maybe it’s time for something different, Hades.'");
-    displaySpeakerDialogue("Persephone"," 'Time to trust that love can heal us, instead of more control.'");
+    displaySpeakerDialogue("Persephone","'Time to trust that love can heal us, instead of more control.'");
 
     // Scene ends with unresolved tension, leaving the player to reflect on their relationship
     displayDialogue("There’s a long silence between them. Hades’ eyes meet Persephone’s, but neither knows how to bridge the gap that’s formed between them.");

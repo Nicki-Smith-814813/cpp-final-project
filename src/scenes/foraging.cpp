@@ -54,7 +54,4 @@ void forageForResources() {
         displayDialogue("Eurydice looks concerned. 'It’s not enough. We’ll need to be careful.'");
     }
 
-    displayDialogue("Suddenly, while reaching for a branch, Eurydice yelps in pain!");
-    displayDialogue("A snake slithers away. She’s been bitten. Her breathing grows shallow.");
-    displayDialogue("You cradle her in your arms. The venom spreads fast. Her fate now lies with the gods...");
 }
